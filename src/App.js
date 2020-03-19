@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import firebase from "./Components/Authentication/Firebase";
+import MainPage from './Components/MainPage'
 
-function App() {
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      password: null,
+      isLogged: false
+    }
+    this.handleLogIn = this.handleLogIn.bind(this)
+  }
+  componentDidMount() {
+    const ref = firebase.database().ref('password')
+    ref.on('value', snapshot =>{
+      console.log(snapshot.val() )
+      this.setState({password: snapshot.val()})
+
+    })
+  }
+  handleLogIn (){
+    this.setState({
+      isLogged: true
+    })
+    window.localStorage.setItem('isLogged', 'true')
+  }
+
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <MainPage password={this.state.password} isLogged={this.state.isLogged} handleLogin={this.handleLogIn}/>
   );
+  }
 }
 
 export default App;

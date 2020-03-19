@@ -1,38 +1,186 @@
-.App {
-  text-align: center;
+#heart-container {
+    padding: 100px 0;
+    height: 100vh;
+    background: linear-gradient(291deg, #e40f0f, #15d4ea, #db1fb3, #63db1f);
+    background-size: 800% 800%;
+    -webkit-animation: moveLoadingBackground 13s ease infinite;
+    -moz-animation: moveLoadingBackground 13s ease infinite;
+    -o-animation: moveLoadingBackground 13s ease infinite;
+    animation: moveLoadingBackground 13s ease infinite;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+#heart-2{
+    color: #db1fb3;
+    animation: heartbeat 5s infinite;
+    font-size: 10rem;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    animation: heartbeat 2s infinite;
+    margin: 5vh auto
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#heart:before,
+#heart:after {
+    position: absolute;
+    content: "";
+    left: 40%;
+    top: 0;
+    width: 100px;
+    height: 160px;
+    background: #fff;
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
 }
 
-.App-link {
-  color: #61dafb;
+#heart:after {
+    left: -60%;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes heartbeat {
+    0% {
+        transform: scale(.75) translateZ(0);
+        color:  #15d4ea;
+    }
+    20% {
+        transform: scale(0.83) translateZ(20px);
+        color: #db1fb3
+    }
+    40% {
+        transform: scale(.75) translateZ(-10px);
+        color: #63db1f
+    }
+    60% {
+        transform: scale(0.83) translateZ(20px);
+        color: #e40f0f
+    }
+    80% {
+        transform: scale(0.75) translateZ(40px);
+        color: chocolate;
+    }
+    100% {
+        transform: scale(0.83) translateZ(-10px);
+        color: black;
+    }
+}
+
+@-webkit-keyframes moveLoadingBackground {
+    0% {
+        background-position: 0% 82%
+    }
+    50% {
+        background-position: 100% 19%
+    }
+    100% {
+        background-position: 0% 82%
+    }
+}
+
+@-moz-keyframes moveLoadingBackground {
+    0% {
+        background-position: 0% 82%
+    }
+    50% {
+        background-position: 100% 19%
+    }
+    100% {
+        background-position: 0% 82%
+    }
+}
+
+@-o-keyframes moveLoadingBackground {
+    0% {
+        background-position: 0% 82%
+    }
+    50% {
+        background-position: 100% 19%
+    }
+    100% {
+        background-position: 0% 82%
+    }
+}
+
+@keyframes moveLoadingBackground {
+    0% {
+        background-position: 0% 82%
+    }
+    50% {
+        background-position: 100% 19%
+    }
+    100% {
+        background-position: 0% 82%
+    }
+}
+
+/*input.ant-input {*/
+
+/*    height: 3rem;*/
+/*    border-radius: 10px;*/
+
+/*}*/
+.btn-grad {
+    font-size: 1.75rem !important;
+    border: 0;
+    border-radius: 25px;
+    color: black;
+    padding: 10px 50px 10px 50px;
+    font-family: Centaur, serif;
+    font-weight: 900;
+
+}
+
+.btn-grad:focus{
+    font-size: 1.5rem !important;
+}
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    overflow: hidden;
+}
+.wallpaper-image{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    backdrop-filter: blur(20%);
+}
+.center-cropped {
+    width: 100vw;
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.mainImage{
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 20vh;
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
 }
