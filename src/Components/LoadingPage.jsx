@@ -5,7 +5,7 @@ import {Modal, Button, Input, Spin} from "antd";
 class LoadingPage extends Component {
     constructor() {
         super();
-        this.state={
+        this.state = {
             width: window.innerWidth,
             visible: false,
             loading: false,
@@ -14,6 +14,7 @@ class LoadingPage extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
+
     showModal = () => {
         this.setState({
             visible: true,
@@ -21,32 +22,36 @@ class LoadingPage extends Component {
     };
     handleOk = () => {
         if (this.state.userInput === this.props.password) {
-        this.setState({
-            loading: true,
-        });
-        this.props.handleLogin()
-        setTimeout(() => {
             this.setState({
-                visible: false,
-                loading: false,
+                loading: true,
             });
-        }, 2000);
-            setTimeout(() => {navigate('/bee-home') ;this.setState({preloading: true})}, 3000)
+            this.props.handleLogin();
+            setTimeout(() => {
+                this.setState({
+                    visible: false,
+                    loading: false,
+                });
+            }, 2000);
+            setTimeout(() => {
+                navigate('/bee-home');
+                this.setState({preloading: true})
+            }, 3000)
         }
 
     };
     handleCancel = () => {
-        console.log('Clicked cancel button');
         this.setState({
             visible: false,
             userInput: ''
         });
     };
-    handleChange(e){
-        this.setState( { userInput: e.target.value})
+
+    handleChange(e) {
+        this.setState({userInput: e.target.value})
     }
+
     componentDidMount() {
-        setTimeout(()=> this.setState({preLoading: true}), 2000 )
+        setTimeout(() => this.setState({preLoading: true}), 2000)
         alert('Website Này Chỉ Dành Riêng Cho Nhi Của Bảo!')
     }
 
@@ -55,13 +60,18 @@ class LoadingPage extends Component {
         return (
             <div id={'heart-container'} className={'d-flex justify-content-center align-items-center flex-column'}>
                 {/*<div id="heart"/>*/}
-                <h4 style={{fontFamily: 'Brush Script MT, Brush Script Std, cursive', color:'white' ,fontSize:'3rem'}}> Counting Dating</h4>
-                <i className="fa fa-heart" id={'heart-2'} aria-hidden="true" />
+                <h4 style={{
+                    fontFamily: 'Brush Script MT, Brush Script Std, cursive',
+                    color: 'white',
+                    fontSize: '3rem'
+                }}> Counting Dating</h4>
+                <i className="fa fa-heart" id={'heart-2'} aria-hidden="true"/>
                 <div>
 
-                    { this.state.preLoading ?  <Button style={{borderRadius: '10px'}} type="primary" onClick={this.showModal}>
-                        Ấn Vào Đi Bee
-                    </Button> : <Spin size={'large'}/>}
+                    {this.state.preLoading ?
+                        <Button style={{borderRadius: '10px'}} type="primary" onClick={this.showModal}>
+                            Ấn Vào Đi Bee
+                        </Button> : <Spin size={'large'}/>}
                     <Modal
                         title="Nhập Mật Khẩu Của 2 Đứa Nè"
                         visible={visible}
@@ -76,7 +86,8 @@ class LoadingPage extends Component {
                             </Button>,
                         ]}
                     >
-                        <Input value={this.state.userInput} type={'password'} onChange={this.handleChange} placeholder={'Ngày Mình Quen Nhaoo??'} />
+                        <Input value={this.state.userInput} type={'password'} onChange={this.handleChange}
+                               placeholder={'Ngày Mình Quen Nhaoo??'}/>
                     </Modal>
                 </div>
             </div>

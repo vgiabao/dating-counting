@@ -1,18 +1,25 @@
 import React, {Component} from 'react';
 import Avatars from "./Avatars";
-import CountingDateTime from "./CountingDateTime";
+import CountingDateTime from "./CountingDateTimeArea/CountingDateTime";
 import UploadImageToFireBase from "../HandleImage/UploadImageToFireBase";
+import Memories from "./Memory/Memories";
+
 class CountingArea extends Component {
     render() {
         return (
-            this.props.isLogged || localStorage.getItem('isLogged')  === 'true' ?
-                <div style={{
-                    height: '100vh',
-                    backgroundImage: 'url(' + 'https://images.pexels.com/photos/730896/pexels-photo-730896.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' + ')'
-                }} className={'wallpaper-image'}>
-                    <CountingDateTime/>
-                    <Avatars/>
-                    <UploadImageToFireBase/>
+            this.props.isLogged || localStorage.getItem('isLogged') === 'true' ?
+                <div className={'mt-4'}>
+                    <br/>
+                    <br/>
+                    <CountingDateTime handlePostImage={this.props.handlePostImage}
+                                      handleStorageImages={this.props.handleStorageImages} notes={this.props.notes}
+                                      handlePostMemoryData={this.props.handlePostMemoryData}/>
+                    <br/>
+                    <Avatars handlePostImage={this.props.handlePostImage}
+                             handleStorageImages={this.props.handleStorageImages} nhiImage={this.props.nhiImage}
+                             baoImage={this.props.baoImage} handlePostNote={this.props.handlePostNote}
+                             handleFormatDate={this.props.handleFormatDate} />
+
                 </div> : null
         );
     }

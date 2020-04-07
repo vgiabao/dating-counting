@@ -164,18 +164,48 @@
     overflow: hidden;
 }
 .wallpaper-image{
-    height: 100vh;
-    background-repeat: no-repeat;
     background-position: center center;
-    backdrop-filter: blur(20%);
-}
-.center-cropped {
-    width: 100vw;
-    height: 100vh;
-    background-position: center center;
-    background-repeat: no-repeat;
+    backdrop-filter: blur(40px);
 }
 
+.avatar-container{
+position: relative;
+}
+.avatar-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, hsl(0,0%,0%), hsl(0,0%,0%));
+    opacity: 0;
+    transition: all 0.5s;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.avatar-overlay:hover{
+    opacity: 0.6;
+}
+.avatar-button{
+    margin: 10px 0 10px 0;
+    width: 20vw;
+    height: 5vh;
+    display: inline-block;
+    padding: 7.5px 12.5px;
+    border-radius: 2px;
+    border: none;
+    font-size: 14px;
+}
+/*.ant-upload-drag-container{*/
+/*    padding: 0;*/
+/*    margin: 0*/
+/*}*/
+/*.ant-upload .ant-upload-btn{*/
+
+/*}*/
 .mainImage{
     background-position: center center;
     background-repeat: no-repeat;
@@ -183,4 +213,67 @@
     width: 100%;
     border-radius: 50%;
     border: 2px solid white;
+}
+.spin{
+    animation-name: spin;
+    animation-duration: 2500ms;
+    animation-iteration-count: infinite;
+
+}
+.vertical-timeline-element-icon > span > svg{
+    margin-top: 5px !important;
+
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+.ant-timeline-item-head{
+    background-color: transparent !important;
+}
+.card-deck-container  {
+    background: lightblue;
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 39 39, auto;
+}
+.ant-picker-date-panel{
+    z-index: 2000 !important;
+}
+.ant-picker-header{
+    z-index: 2000 !important;
+
+}
+.slick-slide{
+    height: 100% !important;
+}
+
+.card-deck-container > div {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    will-change: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-deck-container > div > div {
+    background-color: white;
+    background-size: auto 85%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 45vh;
+    max-width: 300px;
+    height: 85vh;
+    max-height: 570px;
+    will-change: transform;
+    border-radius: 10px;
+    box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
 }

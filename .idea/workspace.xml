@@ -2,31 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6aced0fc-8a8e-46ae-9180-a94a547a29d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Authentication/BackgroundCarousel.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Authentication/Firebase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Authentication/LoginModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/Avatars.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingArea.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTime.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/ParticularDateTime.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/HandleImage/UploadImageToFireBase.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LoadingPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/MainPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Navigation.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTimeArea/DefaultNote.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTimeArea/NoteModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTimeArea/ParticularNote.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/ImagePicking/cardDeckContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/ImagePicking/imagePicking.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/Memory/AddMemoryModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/Memory/Memories.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/Memory/ParticularMemoryCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/Memory/TimeLine.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Navbar/Narbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CoupleComponents/Avatars.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/Avatars.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingArea.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTime.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTimeArea/CountingDateTime.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CoupleComponents/ParticularDateTime.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CoupleComponents/CountingDateTimeArea/ParticularDateTime.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HandleImage/UploadImageToFireBase.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HandleImage/UploadImageToFireBase.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/LoadingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LoadingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Navigation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Navigation.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +67,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\WebstormProjects\dating\src\Components\CoupleComponents\CountingDateTimeArea" />
+      <recent name="C:\Users\Admin\WebstormProjects\dating\src\Components\CoupleComponents\Memory" />
       <recent name="C:\Users\Admin\WebstormProjects\dating\src\Components" />
     </key>
   </component>
@@ -88,7 +104,22 @@
       <workItem from="1584264668732" duration="2132000" />
       <workItem from="1584328505598" duration="2893000" />
       <workItem from="1584497547649" duration="629000" />
-      <workItem from="1584598785186" duration="19085000" />
+      <workItem from="1584598785186" duration="19852000" />
+      <workItem from="1584672648318" duration="510000" />
+      <workItem from="1584689149758" duration="17000" />
+      <workItem from="1584846111987" duration="11184000" />
+      <workItem from="1585016758346" duration="20894000" />
+      <workItem from="1585125461110" duration="10559000" />
+      <workItem from="1585366604808" duration="23527000" />
+      <workItem from="1585416336774" duration="26000" />
+      <workItem from="1585449645772" duration="21931000" />
+      <workItem from="1585623549527" duration="28480000" />
+      <workItem from="1585708293237" duration="5012000" />
+      <workItem from="1585807711748" duration="1028000" />
+      <workItem from="1585810651641" duration="40847000" />
+      <workItem from="1585941106509" duration="3831000" />
+      <workItem from="1585972782224" duration="18367000" />
+      <workItem from="1586001895813" duration="6122000" />
     </task>
     <servers />
   </component>
@@ -96,15 +127,24 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="90" key="#Inspections" timestamp="1585038769402">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="361" y="90" key="#Inspections/0.0.1536.864@0.0.1536.864" timestamp="1585038769402" />
     <state x="476" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583997506925">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="476" y="221" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1583997506925" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1584328615766">
+    <state x="380" y="0" key="CommitChangelistDialog2" timestamp="1585550046533">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1583667374349" />
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1584328615766" />
+    <state x="380" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1585550046533" />
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1585934279169">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1584884820856" />
+    <state x="2492" y="195" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1600.900@1920.0.1600.900" timestamp="1584630937142" />
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1585934279169" />
     <state x="564" y="57" key="RollbackChangesDialog" timestamp="1583911992087">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -113,14 +153,20 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="270" y="74" key="SettingsEditor/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1583925299898" />
-    <state x="425" y="197" key="run.anything.popup" timestamp="1583843402271">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1583843402271" />
-    <state x="2363" y="89" width="698" height="705" key="search.everywhere.popup" timestamp="1584606425592">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1584954646867">
       <screen x="1920" y="0" width="1600" height="900" />
     </state>
-    <state x="425" y="85" width="670" height="676" key="search.everywhere.popup/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1583679153129" />
+    <state width="498" height="446" key="SwitcherDM/0.0.1536.864/1920.0.1600.900@1920.0.1600.900" timestamp="1584954646867" />
+    <state x="2363" y="205" key="run.anything.popup" timestamp="1585978730834">
+      <screen x="1920" y="0" width="1600" height="900" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1583843402271" />
+    <state x="2363" y="205" key="run.anything.popup/0.0.1536.864/1920.0.1600.900@1920.0.1600.900" timestamp="1585978730834" />
+    <state x="425" y="85" width="672" height="676" key="search.everywhere.popup" timestamp="1585195109220">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="85" width="672" height="676" key="search.everywhere.popup/0.0.1536.864/1920.0.1600.900@0.0.1536.864" timestamp="1585195109220" />
     <state x="2363" y="89" width="698" height="705" key="search.everywhere.popup/0.0.1536.864/1920.0.1600.900@1920.0.1600.900" timestamp="1584606425592" />
+    <state x="425" y="85" width="672" height="677" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1585038578089" />
   </component>
 </project>

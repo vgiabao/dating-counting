@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {Upload, Modal} from "antd";
+import {Upload, Modal, Button} from "antd";
 import firebase from "firebase";
+import UploadImageToFireBase from "../HandleImage/UploadImageToFireBase";
+import NoteModal from "./CountingDateTimeArea/NoteModal";
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -19,16 +21,16 @@ class Avatars extends Component {
     }
 
     componentDidMount() {
-        let storeRef = firebase.storage().ref('avatarBao').listAll().then(res => {let item = res.items[res.items.length - 1];
-            let particularImageUrl = firebase.storage().ref('avatarBao').child(item.name).getDownloadURL().then(res => {
+        let storeRef = firebase.storage().ref('avatarBao/').listAll().then(res => {
+            let item = res.items[0];
+            let particularImageUrl = firebase.storage().ref('avatarBao/').child(item.name).getDownloadURL().then(res => {
                 this.setState({baoImage: res})
-                console.log(particularImageUrl)
             })
         })
     }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.baoImage !== prevState.baoImage){
-            console.log('some changes!')
+        if (this.state.baoImage !== prevState.baoImage) {
         }
     }
 
@@ -38,16 +40,34 @@ class Avatars extends Component {
         return (
             <div>
                 <div className={'container-fluid px-2 col-12 d-flex justify-content-center align-items-center'}>
-                    <img className={'col-4 p-0 mainImage'}
-                         src={this.state.baoImage}/>
-                    <div className={'col-4 text-center'}>
-                        <i className="fa fa-heart "
+                    <div className={'avatar-container col-5 px-0 '}>
+                        <img className={'col-12 p-0 mainImage'}
+                             src={this.props.baoImage} alt={'baoImage'}/>
+                        <div className={'avatar-overlay'}>
+                            <UploadImageToFireBase type={'baoImages'} avatarOption={true}
+                                                   handlePostImage={this.props.handlePostImage}
+                                                   handleStorageImages={this.props.handleStorageImages}/>
+                            <NoteModal sender={'Vợ'} target={'Chồng'} handlePostNote={this.props.handlePostNote}
+                                       handleFormatDate={this.props.handleFormatDate}/>
+                        </div>
+                    </div>
+
+                    <div className={'col-3 p-0 text-center'}>
+                        <i className="fa fa-heart"
                            style={{color: 'white', animation: 'heartbeat 2s infinite', fontSize: '5rem'}}
                            aria-hidden="true"/>
                     </div>
-
-                    <img className={'col-4 p-0 mainImage'}
-                         src={'https://www.catster.com/wp-content/uploads/2019/01/A-fat-cat-spread-out.jpg'}/>
+                    <div className={'avatar-container col-5 px-0 '}>
+                        <img className={'col-12 p-0 mainImage'}
+                             src={this.props.nhiImage} alt={'nhiImage'}/>
+                        <div className={'avatar-overlay'}>
+                            <UploadImageToFireBase type={'nhiImages'} avatarOption={true}
+                                                   handlePostImage={this.props.handlePostImage}
+                                                   handleStorageImages={this.props.handleStorageImages}/>
+                            <NoteModal sender={'Chồng'} target={'Vợ'} handlePostNote={this.props.handlePostNote}
+                                       handleFormatDate={this.props.handleFormatDate}/>
+                        </div>
+                    </div>
                 </div>
 
             </div>
