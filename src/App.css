@@ -169,7 +169,9 @@
 }
 
 .avatar-container{
-position: relative;
+    display: flex;
+    justify-content: center;
+
 }
 .avatar-overlay{
     position: absolute;
@@ -235,13 +237,84 @@ position: relative;
 .ant-timeline-item-head{
     background-color: transparent !important;
 }
-.card-deck-container  {
-    background: lightblue;
+.vertical-timeline-element-date{
+    font-size: 3rem;
+    color: white;
+}
+.bounce-in{
+    background: linear-gradient(270deg, #329d9c, #56c596, #7be495, #cff4d2) !important;
+    background-size: 800% 800%;
+    -webkit-animation: memoryBackgroundAnimation 12s ease infinite, cd-bounce-2-inverse .6s ;
+    -moz-animation: memoryBackgroundAnimation 12s ease infinite, cd-bounce-2-inverse .6s    ;
+    animation: memoryBackgroundAnimation 12s ease infinite, cd-bounce-2-inverse .6s ;
+
+}
+@-webkit-keyframes memoryBackgroundAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes memoryBackgroundAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes memoryBackgroundAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}}
+
+
+.cardContainer {
+    background: salmon;
     position: fixed;
     overflow: hidden;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 39 39, auto;
+    cursor: url("https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png")
+    39 39,
+    auto;
+}
+
+.cardContainer > div {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    will-change: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardContainer > div > div {
+    padding: 5px;
+    background-color: white;
+    background-size: auto 85%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 300px;
+    max-width: 300px;
+    height: 550px;
+    max-height: 570px;
+    will-change: transform;
+    border-radius: 10px;
+    box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3);
+
+}
+
+.tinderCardContainer {
+    height: 380px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+button[aria-label="previous"],
+button[aria-label="next"] {
+    background: salmon !important;
+    color: black !important;
 }
 .ant-picker-date-panel{
     z-index: 2000 !important;
@@ -254,26 +327,18 @@ position: relative;
     height: 100% !important;
 }
 
-.card-deck-container > div {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    will-change: transform;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.card-deck-container > div > div {
-    background-color: white;
-    background-size: auto 85%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 45vh;
-    max-width: 300px;
-    height: 85vh;
-    max-height: 570px;
-    will-change: transform;
-    border-radius: 10px;
-    box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
+
+@media screen and (min-width: 600px) {
+    .mainImage{
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 200px;
+        border-radius: 0;
+        width: 200px;
+        border: 1px solid;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
 }

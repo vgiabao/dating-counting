@@ -26,7 +26,7 @@ class TimeLine extends Component {
     ))
 
         return (
-            <VerticalTimeline layout={'2-columns'}>
+            <VerticalTimeline >
                 <AddMemoryModal handlePostMemoryData={this.props.handlePostMemoryData}
                                 handleStorageMemoryImages={this.props.handleStorageMemoryImages}/>
                 {memoryCards}

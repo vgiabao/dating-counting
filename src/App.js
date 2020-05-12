@@ -171,7 +171,7 @@ class App extends Component {
         return (
             <div>
                 {this.state.isLogged || localStorage.getItem('isLogged') ?
-                    <Navbar  handleStorageImages={this.handleStorageImages}/> : null}
+                    <Navbar handleStorageImages={this.handleStorageImages}/> : null}
                 <MainPage wallpaperImage={this.state.wallpaperImages} password={this.state.password}
                           isLogged={this.state.isLogged}
                           handleLogin={this.handleLogIn} handlePostImage={this.handlePostImage}

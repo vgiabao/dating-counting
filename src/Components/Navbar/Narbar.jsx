@@ -42,7 +42,7 @@ class Narbar extends Component {
                 <SubMenu
                     title={
                         <span
-                            className="submenu-title-wrapper d-flex flex-row justify-content-center align-items-center">
+                            className="submenu-title-wrapper d-flex flex-row justify-content-center align-items-center mr-auto">
               <SettingOutlined spin={'true'}/>
               Setting
             </span>

@@ -15,7 +15,10 @@
     "express": "^4.17.1",
     "firebase": "^7.10.0",
     "firebase-tools": "^7.14.0",
+    "moment": "^2.24.0",
     "multer": "^1.4.2",
+    "nuka-carousel": "^4.6.7",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-firebase-file-uploader": "^2.4.3",
@@ -24,7 +27,8 @@
     "react-scripts": "3.4.0",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^7.0.8",
-    "react-vertical-timeline-component": "^2.5.0"
+    "react-vertical-timeline-component": "^2.5.0",
+    "react-with-gesture": "^4.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

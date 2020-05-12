@@ -35,11 +35,9 @@ class ParticularMemoryCard extends Component {
         }
 
         return (
-            <div className={'mb-4'}>
                 <VerticalTimelineElement
-                    className="vertical-timeline-element--work"
-                    contentArrowStyle={{borderRight: '7px solid  rgb(33, 150, 243)'}}
-                    contentStyle={{backgroundColor: '#89A894'}}
+                    className="vertical-timeline-element--work mb-4"
+                    contentArrowStyle={{borderRight: '7px solid  #89A894'}}
                     date={'Hôm ' + this.props.date}
                     dateStyle={{fontSize: '2rem'}}
                     iconStyle={{background: 'rgb(33, 150, 243)', color: '#fff', marginTop: '10px'}}
@@ -53,7 +51,6 @@ class ParticularMemoryCard extends Component {
                     <Gallery photos={imageArr} columns={columns}/>
 
                 </VerticalTimelineElement>
-            </div>
         );
     }
 }

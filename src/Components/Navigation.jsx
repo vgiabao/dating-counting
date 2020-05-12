@@ -8,9 +8,7 @@ import Memories from "./CoupleComponents/Memory/Memories";
 import CardDeckContainer from "./CoupleComponents/ImagePicking/cardDeckContainer";
 
 class Navigation extends Component {
-
     render() {
-
         return (
             <Router>
                 <LoadingPage path={'/'} password={this.props.password} isLogged={this.props.isLogged}
@@ -25,8 +23,7 @@ class Navigation extends Component {
                 <Memories path={'/our-story'} handlePostMemoryData={this.props.handlePostMemoryData}
                           handleStorageMemoryImages={this.props.handleStorageMemoryImages}
                           memoryData={this.props.memoryData} memoryImageArr={this.props.memoryImageArr}/>
-                <CardDeckContainer path={'/images'}
-                                   cards={this.props.tarotImages}/>
+                <CardDeckContainer path={'/images'} cards={this.props.tarotImages}/>
             </Router>
         );
     }

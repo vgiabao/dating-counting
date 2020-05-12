@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import ImagePicking from "./imagePicking";
+import Deck from "./imagePicking";
 class CardDeckContainer extends Component {
     render() {
+        console.log(this.props.cards)
         return (
             <div className={'card-deck-container'}>
-                <ImagePicking cards={this.props.cards}/>
+                <Deck cards={this.props.cards}/>
             </div>
         );
     }

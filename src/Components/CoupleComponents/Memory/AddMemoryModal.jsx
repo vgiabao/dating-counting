@@ -4,6 +4,8 @@ import {VerticalTimelineElement} from "react-vertical-timeline-component";
 import {Button, Input, Modal, DatePicker, Upload} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
 import firebase from "../../Authentication/Firebase";
+import {navigate} from "@reach/router";
+import moment from 'moment'
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -27,6 +29,7 @@ class AddMemoryModal extends Component {
             content: '',
             previewVisible: false,
             previewImage: '',
+            fileList: [],
         }
         this.showModal = this.showModal.bind(this);
         this.handleOk = this.handleOk.bind(this);
@@ -35,6 +38,7 @@ class AddMemoryModal extends Component {
         this.handleContentInput = this.handleContentInput.bind(this);
         this.handleDateTimeInput = this.handleDateTimeInput.bind(this);
         this.handleImagesChange = this.handleImagesChange.bind(this)
+        this.getDate = this.getDate.bind(this)
     }
 
     showModal() {
@@ -55,7 +59,11 @@ class AddMemoryModal extends Component {
         this.props.handleStorageMemoryImages(images, date)
         this.props.handlePostMemoryData(title, content, date)
 
-        setTimeout(() => this.setState({loading: false, visible: false, date: '', content: '', title: ''}), 2000);
+        setTimeout(() => {
+            this.setState({loading: false, visible: false, date: '', content: '', title: '', images: []});
+            this.getDate();
+            // window.location.reload();
+        }, 2000);
     }
 
     isIncludesItem(fileList, target) {
@@ -73,7 +81,10 @@ class AddMemoryModal extends Component {
         for (let item of this.state.images) {
             if (this.isIncludesItem(file.fileList, item)) newImageArr.push(item)
         }
-        this.setState({images: newImageArr})
+
+        this.setState({images: newImageArr, fileList: [... file.fileList]})
+        console.log('fileList:', file)
+        console.log('state:', this.state.images)
     }
 
     handleTitleInput(e) {
@@ -98,7 +109,20 @@ class AddMemoryModal extends Component {
         });
     };
 
+    getDate() {
+        let currentDate = new Date
+        const currentMoment = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
+        this.setState({date: currentMoment})
+    }
+
+    componentDidMount() {
+        this.getDate()
+    }
+
     render() {
+        const dateFormat = 'YYYY-MM-DD';
+        let currentDate = new Date
+        const currentMoment = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
         const {images, title, date, content} = this.state;
         const uploadButton = (
             <div>
@@ -122,23 +146,26 @@ class AddMemoryModal extends Component {
                         Ứ Thêm Nữa!
                     </Button>,
                     <Button key="submit" type="primary" loading={this.state.loading} onClick={this.handleOk}
-                            disabled={!date || !content || !title || !images}>
+                            disabled={!date || !content || !title || images.length === 0}>
                         Thêm Kỉ niệm!
                     </Button>,
                 ]}>
                     <div className={'container px-0 my-3 mx-1'}>
                         <div className={'col-6 mb-2 px-0'}>
-                            <DatePicker height={'middle'} onChange={this.handleDateTimeInput}/>
+                            <DatePicker defaultValue={moment(currentMoment, dateFormat)} height={'middle'}
+                                        onChange={this.handleDateTimeInput}/>
                         </div>
                         <div className={'col-12 px-0'}>
                             <Upload
                                 action={(file) => {
                                     this.setState({images: [...this.state.images, file]});
                                 }}
+
                                 onChange={this.handleImagesChange}
                                 listType="picture-card"
                                 onPreview={this.handlePreview}
                                 multiple={true}
+                                fileList={this.state.fileList}
                             >
                                 {uploadButton}
                             </Upload>

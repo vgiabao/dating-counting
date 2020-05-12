@@ -38,39 +38,36 @@ class Avatars extends Component {
 
 
         return (
-            <div>
                 <div className={'container-fluid px-2 col-12 d-flex justify-content-center align-items-center'}>
-                    <div className={'avatar-container col-5 px-0 '}>
-                        <img className={'col-12 p-0 mainImage'}
+                    <div className={'avatar-container col-4 px-0 '}>
+                        <img className={'p-0 mainImage'}
                              src={this.props.baoImage} alt={'baoImage'}/>
-                        <div className={'avatar-overlay'}>
+                        <div className={'avatar-overlay mainImage'}>
                             <UploadImageToFireBase type={'baoImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>
-                            <NoteModal sender={'Vợ'} target={'Chồng'} handlePostNote={this.props.handlePostNote}
-                                       handleFormatDate={this.props.handleFormatDate}/>
+                            {/*<NoteModal sender={'Vợ'} target={'Chồng'} handlePostNote={this.props.handlePostNote}*/}
+                            {/*           handleFormatDate={this.props.handleFormatDate}/>*/}
                         </div>
                     </div>
 
-                    <div className={'col-3 p-0 text-center'}>
+                    <div className={'col-4 p-0 text-center'}>
                         <i className="fa fa-heart"
                            style={{color: 'white', animation: 'heartbeat 2s infinite', fontSize: '5rem'}}
                            aria-hidden="true"/>
                     </div>
-                    <div className={'avatar-container col-5 px-0 '}>
-                        <img className={'col-12 p-0 mainImage'}
+                    <div className={'avatar-container col-4 px-0 '}>
+                        <img className={'p-0 mainImage'}
                              src={this.props.nhiImage} alt={'nhiImage'}/>
-                        <div className={'avatar-overlay'}>
+                        <div className={'avatar-overlay mainImage'}>
                             <UploadImageToFireBase type={'nhiImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>
-                            <NoteModal sender={'Chồng'} target={'Vợ'} handlePostNote={this.props.handlePostNote}
-                                       handleFormatDate={this.props.handleFormatDate}/>
+                            {/*<NoteModal sender={'Chồng'} target={'Vợ'} handlePostNote={this.props.handlePostNote}*/}
+                            {/*           handleFormatDate={this.props.handleFormatDate}/>*/}
                         </div>
                     </div>
                 </div>
-
-            </div>
         );
     }
 }
