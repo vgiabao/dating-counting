@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {navigate} from "@reach/router";
-import {Modal, Button, Input, Spin} from "antd";
+import {Modal, Button, Input, Spin, Radio} from "antd";
 
 class LoadingPage extends Component {
     constructor() {
@@ -10,9 +10,11 @@ class LoadingPage extends Component {
             visible: false,
             loading: false,
             userInput: '',
-            preLoading: false
-        }
-        this.handleChange = this.handleChange.bind(this)
+            preLoading: false,
+            gender: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleGenderChange = this.handleGenderChange.bind(this);
     }
 
     showModal = () => {
@@ -25,6 +27,7 @@ class LoadingPage extends Component {
             this.setState({
                 loading: true,
             });
+            this.props.handlerGender(this.state.gender);
             this.props.handleLogin();
             setTimeout(() => {
                 this.setState({
@@ -47,6 +50,7 @@ class LoadingPage extends Component {
     };
 
     handleChange(e) {
+        console.log(e.target.value);
         this.setState({userInput: e.target.value})
     }
 
@@ -54,9 +58,15 @@ class LoadingPage extends Component {
         setTimeout(() => this.setState({preLoading: true}), 2000)
         alert('Website Này Chỉ Dành Riêng Cho Nhi Của Bảo!')
     }
+    handleGenderChange(e){
+        this.setState({gender: e.target.value});
+    }
 
     render() {
-        let {visible, loading} = this.state
+        let {visible, loading} = this.state;
+        const plainOptions = ['Chồng Béo', 'Vợ Béo'];
+
+
         return (
             <div id={'heart-container'} className={'d-flex justify-content-center align-items-center flex-column'}>
                 {/*<div id="heart"/>*/}
@@ -73,7 +83,7 @@ class LoadingPage extends Component {
                             Ấn Vào Đi Bee
                         </Button> : <Spin size={'large'}/>}
                     <Modal
-                        title="Nhập Mật Khẩu Của 2 Đứa Nè"
+                        title="❤ Nhập Mật Khẩu Của 2 Đứa Nè ❤"
                         visible={visible}
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
@@ -86,8 +96,17 @@ class LoadingPage extends Component {
                             </Button>,
                         ]}
                     >
+                        <div
+                            className={'container pb-2 d-flex flex-row pl-0'}>
+                        <h6 > Tớ là: </h6>
+                            <Radio.Group onChange={this.handleGenderChange} value={this.state.gender} className={'col-6'}>
+                                <Radio value='Chồng'>Chồng Béo</Radio>
+                                <Radio value='Vợ'>Vợ Béo</Radio>
+
+                            </Radio.Group>
+                        </div>
                         <Input value={this.state.userInput} type={'password'} onChange={this.handleChange}
-                               placeholder={'Ngày Mình Quen Nhaoo??'}/>
+                               placeholder={'Mật khẩu chung của tụi mình :v'}/>
                     </Modal>
                 </div>
             </div>

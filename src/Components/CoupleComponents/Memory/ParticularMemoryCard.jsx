@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import { VerticalTimelineElement} from 'react-vertical-timeline-component'
+import {VerticalTimelineElement} from 'react-vertical-timeline-component'
 import {ClockCircleOutlined} from '@ant-design/icons'
 import Gallery from "react-photo-gallery";
+import {Modal} from "antd";
 
 function randomInt(min, max) {
     return min + Math.floor((max - min) * Math.random());
 }
+
 function columns(containerWidth) {
     let columns = 1;
     if (containerWidth >= 500) columns = 2;
@@ -15,42 +17,85 @@ function columns(containerWidth) {
 }
 
 class ParticularMemoryCard extends Component {
+    constructor() {
+        super();
+        this.state = {
+            visible: false,
+            currentImgUrl: '',
+        }
+        this.showModal = this.showModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.clone = this.clone.bind(this);
+    }
+
+    showModal() {
+        this.setState({visible: true})
+    }
+
+    closeModal() {
+        this.setState({visible: false})
+    }
+
+    // getMeta(url) {
+    //     let img = new Image();
+    //     img.onload = function () {
+    //         console.log(this.width + ' ' + this.height);
+    //     };
+    //     img.src = url;
+    // }
+
+    clone(imgUrl) {
+        this.setState({visible: true, currentImgUrl: imgUrl})
+    }
+
     render() {
         let imageArr = [];
-        let imageSource;
         if (this.props.image) {
-            let index = 0
-            imageSource = this.props.image;
+            let index = 0;
+            const imageSource = this.props.image;
+            let count = 0
             for (let image in imageSource) {
+                // this.getMeta(this.props.image[image]);
+                count++;
                 imageArr.push({
                     src: this.props.image[image],
                     width: randomInt(2, 3),
                     height: randomInt(2, 5),
                     sizes: ["(min-width: 480px) 8vw,(min-width: 1024px) 8vw,30vw"],
-                    onClick: () => console.log(1),
                     key: index
+
                 })
                 index += 1
             }
+            console.log(count)
         }
 
         return (
-                <VerticalTimelineElement
-                    className="vertical-timeline-element--work mb-4"
-                    contentArrowStyle={{borderRight: '7px solid  #89A894'}}
-                    date={'Hôm ' + this.props.date}
-                    dateStyle={{fontSize: '2rem'}}
-                    iconStyle={{background: 'rgb(33, 150, 243)', color: '#fff', marginTop: '10px'}}
-                    icon={<ClockCircleOutlined style={{fontSize: '3rem'}}/>}
-                >
-                    <h3 className="vertical-timeline-element-title">{this.props.title}</h3>
-                    <hr/>
-                    <p>
-                        {this.props.content}
-                    </p>
-                    <Gallery photos={imageArr} columns={columns}/>
-
-                </VerticalTimelineElement>
+            <VerticalTimelineElement
+                className="vertical-timeline-element--work mb-4"
+                contentArrowStyle={{borderRight: '7px solid  #89A894'}}
+                date={'Hôm ' + this.props.date}
+                dateStyle={{fontSize: '2rem', borderRadius:'5px', padding:'30px'}}
+                iconStyle={{background: 'gray', color: '#fff', marginTop: '10px'}}
+                icon={<ClockCircleOutlined style={{fontSize: '3rem'}}/>}
+            >
+                <h3 className="vertical-timeline-element-title" style={{color:'white'}}>{this.props.title}</h3>
+                <hr/>
+                <p style={{color:'white'}}>
+                    {this.props.content}
+                </p>
+                <Gallery photos={imageArr}
+                         onClick={(e, obj, clone = this.clone) => clone(obj.photo.src)}/>
+                <Modal bodyStyle={{padding: '0'}}
+                       closeIcon={<i className="fa fa-times" style={{color: 'red', fontWeight: 'bold'}}
+                                     aria-hidden="true"/>
+                       } centered footer={null} visible={this.state.visible}
+                       onCancel={this.closeModal}>
+                    <div style={{maxHeight: '60vh', padding: '0'}}>
+                        <img style={{width: '100%'}} src={this.state.currentImgUrl} alt={'Large Image'}/>
+                    </div>
+                </Modal>
+            </VerticalTimelineElement>
         );
     }
 }

@@ -151,7 +151,6 @@
     padding: 10px 50px 10px 50px;
     font-family: Centaur, serif;
     font-weight: 900;
-
 }
 
 .btn-grad:focus{
@@ -178,6 +177,7 @@
     top: 0;
     left: 0;
     right: 0;
+    /*margin-left: -100px;*/
     bottom: 0;
     border-radius: 50%;
     background: linear-gradient(to bottom, hsl(0,0%,0%), hsl(0,0%,0%));
@@ -242,7 +242,7 @@
     color: white;
 }
 .bounce-in{
-    background: linear-gradient(270deg, #329d9c, #56c596, #7be495, #cff4d2) !important;
+    background: url("https://thumbs.gfycat.com/ComplicatedYawningIndiancow-size_restricted.gif") !important;
     background-size: 800% 800%;
     -webkit-animation: memoryBackgroundAnimation 12s ease infinite, cd-bounce-2-inverse .6s ;
     -moz-animation: memoryBackgroundAnimation 12s ease infinite, cd-bounce-2-inverse .6s    ;
@@ -311,6 +311,10 @@
     border-top-right-radius: 10px;
 }
 
+div.ant-modal-body{
+    padding-top: 0;
+}
+
 button[aria-label="previous"],
 button[aria-label="next"] {
     background: salmon !important;
@@ -327,10 +331,26 @@ button[aria-label="next"] {
     height: 100% !important;
 }
 
+.userPostImage {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    padding: 5px;
+    /*border: 2px solid white;*/
+}
 
-
+.newFeedPostSize{
+    width:100%!important;
+}
+.newFeedButton{
+ color: gray;
+    padding-left: 3px;
+}
+.zoomImageContainer{
+    padding: 0!important;
+}
 @media screen and (min-width: 600px) {
-    .mainImage{
+    .mainImage {
         background-position: center center;
         background-repeat: no-repeat;
         height: 200px;
@@ -340,5 +360,16 @@ button[aria-label="next"] {
         padding: 10px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+    .avatar-overlay{
+        left: 50%;
+        margin-left: -100px;
 
+    }
+    .newFeedPostSize{
+        width:75%!important;
+    }
+    .nameBoxSize{
+        width: 200px;
+
+    }
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Menu} from "antd";
-import {SettingOutlined, ContactsOutlined} from "@ant-design/icons";
+import {SettingOutlined, ContactsOutlined, LogoutOutlined } from "@ant-design/icons";
 import {navigate} from "@reach/router";
 import UploadImageToFireBase from "../HandleImage/UploadImageToFireBase";
 
@@ -48,16 +48,20 @@ class Narbar extends Component {
             </span>
                     }
                 >
-                        <Menu.Item className={'d-flex flex-row justify-content-center align-items-center'}
+                        <Menu.Item className={'d-flex flex-row  align-items-center'}
                                    onClick={this.handleClick} key="setting:1"> <ContactsOutlined/> Đổi Ảnh Bìa
+                            <input onChange={this.onChangeFile} ref="fileInput" type="file" name="wallpaper"
+                                   style={{display: "none"}}/>
                         </Menu.Item>
-                    <input onChange={this.onChangeFile} ref="fileInput" type="file" name="wallpaper"
-                           style={{display: "none"}}/>
+                    <Menu.Item className={'d-flex flex-row align-items-center'}
+                               onClick={this.props.logoutHandler} key="setting:2"> <LogoutOutlined /> Logout
+                    </Menu.Item>
+
                 </SubMenu>
                 <Menu.Item title={'Counting area'} onClick={() => navigate('/bee-home')}> Counting</Menu.Item>
                 <Menu.Item tite={'Our Story'} onClick={() => navigate('/our-story')}> Our Story </Menu.Item>
-                <Menu.Item tite={'AlBum'} onClick={()=> navigate('/images')}> Ảnh </Menu.Item>
-
+                <Menu.Item tite={'New Feed'} onClick={()=> navigate('/new-feed')}> New Feed </Menu.Item>
+                <Menu.Item tite={'AlBum'} onClick={()=> navigate('/images')}> Album </Menu.Item>
             </Menu>
 
         );

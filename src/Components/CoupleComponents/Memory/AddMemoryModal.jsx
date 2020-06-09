@@ -62,6 +62,7 @@ class AddMemoryModal extends Component {
         setTimeout(() => {
             this.setState({loading: false, visible: false, date: '', content: '', title: '', images: []});
             this.getDate();
+            navigate('/our-story')
             // window.location.reload();
         }, 2000);
     }

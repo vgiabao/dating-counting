@@ -46,8 +46,8 @@ class Avatars extends Component {
                             <UploadImageToFireBase type={'baoImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>
-                            {/*<NoteModal sender={'Vợ'} target={'Chồng'} handlePostNote={this.props.handlePostNote}*/}
-                            {/*           handleFormatDate={this.props.handleFormatDate}/>*/}
+                            <NoteModal sender={'Vợ'} target={'Chồng'} handlePostNote={this.props.handlePostNote}
+                                       handleFormatDate={this.props.handleFormatDate}/>
                         </div>
                     </div>
 
@@ -63,10 +63,11 @@ class Avatars extends Component {
                             <UploadImageToFireBase type={'nhiImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>
-                            {/*<NoteModal sender={'Chồng'} target={'Vợ'} handlePostNote={this.props.handlePostNote}*/}
-                            {/*           handleFormatDate={this.props.handleFormatDate}/>*/}
+                            <NoteModal sender={'Chồng'} target={'Vợ'} handlePostNote={this.props.handlePostNote}
+                                       handleFormatDate={this.props.handleFormatDate}/>
                         </div>
                     </div>
+
                 </div>
         );
     }

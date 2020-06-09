@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import Avatars from "./Avatars";
 import CountingDateTime from "./CountingDateTimeArea/CountingDateTime";
-import UploadImageToFireBase from "../HandleImage/UploadImageToFireBase";
-import Memories from "./Memory/Memories";
-
+import CoupleName from "./coupleName";
 class CountingArea extends Component {
     render() {
         return (
@@ -19,6 +17,7 @@ class CountingArea extends Component {
                              handleStorageImages={this.props.handleStorageImages} nhiImage={this.props.nhiImage}
                              baoImage={this.props.baoImage} handlePostNote={this.props.handlePostNote}
                              handleFormatDate={this.props.handleFormatDate} />
+                    <CoupleName/>
 
                 </div> : null
         );
