@@ -21,12 +21,7 @@ class Avatars extends Component {
     }
 
     componentDidMount() {
-        let storeRef = firebase.storage().ref('avatarBao/').listAll().then(res => {
-            let item = res.items[0];
-            let particularImageUrl = firebase.storage().ref('avatarBao/').child(item.name).getDownloadURL().then(res => {
-                this.setState({baoImage: res})
-            })
-        })
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -38,9 +33,9 @@ class Avatars extends Component {
 
 
         return (
-                <div className={'container-fluid px-2 col-12 d-flex justify-content-center align-items-center'}>
-                    <div className={'avatar-container col-4 px-0 '}>
-                        <img className={'p-0 mainImage'}
+                <div  className={'container-fluid px-2 col-12 d-flex justify-content-center align-items-center'}>
+                    <div className={'avatar-container col-4 px-0  '}>
+                        <img className={'mainImage'}
                              src={this.props.baoImage} alt={'baoImage'}/>
                         <div className={'avatar-overlay mainImage'}>
                             <UploadImageToFireBase type={'baoImages'} avatarOption={true}
@@ -51,15 +46,11 @@ class Avatars extends Component {
                         </div>
                     </div>
 
-                    <div className={'col-4 p-0 text-center'}>
-                        <i className="fa fa-heart"
-                           style={{color: 'white', animation: 'heartbeat 2s infinite', fontSize: '5rem'}}
-                           aria-hidden="true"/>
-                    </div>
-                    <div className={'avatar-container col-4 px-0 '}>
+
+                    <div className={'avatar-container col-4 px-0 offset-4 '}>
                         <img className={'p-0 mainImage'}
                              src={this.props.nhiImage} alt={'nhiImage'}/>
-                        <div className={'avatar-overlay mainImage'}>
+                        <div className={'avatar-overlay mainImage '}>
                             <UploadImageToFireBase type={'nhiImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>

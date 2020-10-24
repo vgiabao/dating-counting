@@ -18,6 +18,10 @@ class NewFeed extends Component {
             this.setState({statusData: nextProps.statusData});
         }
     }
+    componentDidMount() {
+        window.scrollTo(0 , 0)
+    }
+
 
     render() {
         let statusArray = this.state.statusData.map(item => <PrePost
@@ -33,7 +37,7 @@ class NewFeed extends Component {
         // console.log(statusArray.length);
         return (
 
-            <div className={'mt-4'}>
+            <div className={'container'} style={{overflowX: 'hidden'}}>
                 <br/>
                 <br/>
 

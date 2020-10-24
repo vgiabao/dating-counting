@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Input, message} from "antd";
 import firebase from "../../Authentication/Firebase";
 import {SmileTwoTone} from "@ant-design/icons";
+import parse from 'html-react-parser';
 
 class PrePost extends Component {
     constructor(props) {
@@ -81,6 +82,9 @@ class PrePost extends Component {
             this.fetchComment();
         }
     }
+    replaceAll(str, find, replace) {
+        return str.replace(new RegExp(find, 'g'), replace);
+    }
 
     deleteSpace(arr) {
         let newArr = [];
@@ -91,8 +95,13 @@ class PrePost extends Component {
     }
 
     render() {
-        let likeSentence;
-        let commentCount;
+        let likeSentence, commentCount, content;
+        console.log('cotent prepost',this.props.content)
+        const preContent = this.replaceAll(this.props.content, '\\n', '<br/>');
+        console.log('pre',preContent)
+        content = parse('<p>' + preContent +'</p>')
+        console.log('parsed', content)
+        // content = this.props.content.split('\n').join('<br/>');
         // if (this.state.comment) console.log(this.state.comment)
         if (this.props.owner === this.props.gender) {
             if (this.state.like === 1) {likeSentence = <div className={'mr-auto'}><i
@@ -136,7 +145,7 @@ class PrePost extends Component {
                     </div>
                 </div>
                 <div className={'px-1 '}>
-                    {this.props.content}
+                    {content}
                 </div>
                 <hr className={'my-1'}/>
                 <div className={'container-fluid row'}>

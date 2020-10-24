@@ -56,7 +56,7 @@ class LoadingPage extends Component {
 
     componentDidMount() {
         setTimeout(() => this.setState({preLoading: true}), 2000)
-        alert('Website Này Chỉ Dành Riêng Cho Nhi Của Bảo!')
+        alert('Em Huyền Queen Bee ơi, webnày anh làm cho em ấy!')
     }
     handleGenderChange(e){
         this.setState({gender: e.target.value});
@@ -64,7 +64,7 @@ class LoadingPage extends Component {
 
     render() {
         let {visible, loading} = this.state;
-        const plainOptions = ['Chồng Béo', 'Vợ Béo'];
+        const plainOptions = ['Gấu Brown', 'Thỏ Cony'];
 
 
         return (
@@ -100,8 +100,8 @@ class LoadingPage extends Component {
                             className={'container pb-2 d-flex flex-row pl-0'}>
                         <h6 > Tớ là: </h6>
                             <Radio.Group onChange={this.handleGenderChange} value={this.state.gender} className={'col-6'}>
-                                <Radio value='Chồng'>Chồng Béo</Radio>
-                                <Radio value='Vợ'>Vợ Béo</Radio>
+                                <Radio value='Chồng'>King 🐝</Radio>
+                                <Radio value='Vợ'>Queen 🐷</Radio>
 
                             </Radio.Group>
                         </div>

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Input, Button, Modal, message} from 'antd'
 import {FileImageOutlined, SmileTwoTone} from "@ant-design/icons";
 import EmojiCard from "./emojiCard";
-
 class CurrentPost extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +20,7 @@ class CurrentPost extends Component {
         this.removeEmotion = this.removeEmotion.bind(this);
         this.clearState = this.clearState.bind(this)
         this.handlePostStatus = this.handlePostStatus.bind(this)
+        this.handlePressEnter = this.handlePressEnter.bind(this)
     }
 
     userPostInputHandler(e) {
@@ -54,16 +54,23 @@ class CurrentPost extends Component {
     clearState() {
         this.setState({gender: '', emotion: '', emoji: '', textInput: ''})
     }
+    replaceAll(str, find, replace) {
+        return str.replace(new RegExp(find, 'g'), replace);
+    }
 
     handlePostStatus() {
         const date = new Date();
         const moment = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        const {emotion, emoji, textInput} = this.state;
+        let {emotion, emoji, textInput} = this.state;
+        const replacedContent = this.replaceAll(textInput, '\n', '\n' );
         const feeling = emoji ? " đang " + emoji + " " + emotion : '';
-        this.props.handlePostStatus(this.props.gender, textInput, moment, feeling);
+        this.props.handlePostStatus(this.props.gender, replacedContent, moment, feeling);
         this.clearState();
         message.success('Đã đăng status!!!!')
 
+    }
+    handlePressEnter(e){
+        this.setState({textInput: this.state.textInput})
     }
 
     render() {
@@ -114,7 +121,7 @@ class CurrentPost extends Component {
                     <div className={'container flex-column d-flex pr-1 py-1 '}>
 
                         <Input.TextArea value={this.state.textInput} target={'_blank'} className={'col-10'}
-                                        placeholder={'Bạn Đang Nghĩ Gì?'}
+                                        placeholder={'Bạn Đang Nghĩ Gì?'} onPressEnter={this.handlePressEnter}
                                         onChange={this.userPostInputHandler}>
                         </Input.TextArea>
 
@@ -130,6 +137,7 @@ class CurrentPost extends Component {
                                     type={"primary"}> Đăng</Button>
                         </div>
                     </div>
+
                 </div>
                 <Modal title={'Đang cảm thấy'} onOk={this.handleCancel}
                        onCancel={this.handleCancel}

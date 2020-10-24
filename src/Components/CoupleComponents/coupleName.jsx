@@ -76,7 +76,7 @@ class CoupleName extends Component {
             <div className={'container-fluid px-2 col-12 d-flex flex-row align-items-center '}>
                 <div className={'px-0 col-4 mt-1 text-center p-1'} onClick={this.showModalChong}>
                     <div className={'rounded-pill p-1'}
-                         style={{display: 'inline-block', backgroundColor: '#8C93A8', maxWidth: '200px'}}>
+                         style={{display: 'inline-block', backgroundColor: '#605D63', maxWidth: '200px'}}>
                         <h4 className={' text-center mb-0 h6'} style={{
 
                             fontFamily: 'Brush Script MT, Brush Script Std, cursive',
@@ -89,7 +89,7 @@ class CoupleName extends Component {
                 </div>
                 <div className={'px-0 col-4 mt-1 offset-4 text-center p-1'}>
                     <div className={'rounded-pill p-1'} onClick={this.showModalVo}
-                         style={{display: 'inline-block', backgroundColor: '#8C93A8', maxWidth: '200px'}}>
+                         style={{display: 'inline-block', backgroundColor: '#605D63', maxWidth: '200px'}}>
                         <h4 className={' text-center  mb-0 h6'} style={{
 
                             fontFamily: 'Brush Script MT, Brush Script Std, cursive',
@@ -114,6 +114,7 @@ class CoupleName extends Component {
                     addonBefore="Name: "
                     defaultValue={this.props.baoName}/>
                 </Modal>
+
 
             </div>
         );

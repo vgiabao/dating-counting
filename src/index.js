@@ -5,9 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import * as firebase  from "firebase";
 import 'antd/dist/antd.css'
-
 import 'bootstrap/dist/css/bootstrap.min.css'
-ReactDOM.render(<App />, document.getElementById('root'));
+import './css/hour-glass.css'
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 let config = {
 

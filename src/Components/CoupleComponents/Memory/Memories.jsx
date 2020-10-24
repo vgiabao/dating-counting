@@ -3,11 +3,15 @@ import TimeLine from "./TimeLine";
 import CountingArea from "../CountingArea";
 
 class Memories extends Component {
+    componentDidMount() {
+        window.scrollTo(0 , 0)
+    }
+
+
     render() {
 
         return (
             <div className={'text-center container-fluid'}>
-                <hr/>
                 <h1 className={'d-inline-block mt-2'} style={{
                     fontFamily: 'Brush Script MT, Brush Script Std, cursive',
                     color: 'white',

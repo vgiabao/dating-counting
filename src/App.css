@@ -187,6 +187,7 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+    margin-left: 22px;
 }
 .avatar-overlay:hover{
     opacity: 0.6;
@@ -211,8 +212,8 @@
 .mainImage{
     background-position: center center;
     background-repeat: no-repeat;
-    height: 20vh;
-    width: 100%;
+    height: 100px;
+    width: 75%;
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -223,9 +224,10 @@
 
 }
 .vertical-timeline-element-icon > span > svg{
-    margin-top: 5px !important;
+    margin-top: 2px;
 
 }
+
 @keyframes spin {
     from {
         transform:rotate(0deg);
@@ -249,22 +251,26 @@
     animation: memoryBackgroundAnimation 12s ease infinite, cd-bounce-2-inverse .6s ;
 
 }
-@-webkit-keyframes memoryBackgroundAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes memoryBackgroundAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes memoryBackgroundAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}}
+/*@-webkit-keyframes memoryBackgroundAnimation {*/
+/*    0%{background-position:0% 50%}*/
+/*    50%{background-position:100% 50%}*/
+/*    100%{background-position:0% 50%}*/
+/*}*/
+/*@-moz-keyframes memoryBackgroundAnimation {*/
+/*    0%{background-position:0% 50%}*/
+/*    50%{background-position:100% 50%}*/
+/*    100%{background-position:0% 50%}*/
+/*}*/
+/*@keyframes memoryBackgroundAnimation {*/
+/*    0%{background-position:0% 50%}*/
+/*    50%{background-position:100% 50%}*/
+/*    100%{background-position:0% 50%}}*/
 
+.galleryLayout{
+    display: flex;
+    flex-wrap: wrap;
 
+}
 .cardContainer {
     background: salmon;
     position: fixed;
@@ -349,7 +355,24 @@ button[aria-label="next"] {
 .zoomImageContainer{
     padding: 0!important;
 }
+.menuLeft2Right{
+    animation-name: left2right;
+}
+@keyframes left2right {
+    from {left: -100px; display: block}
+    to {left: 0; display: none}
+}
+.MuiBottomNavigationAction-label MuiBottomNavigationAction-iconOnly{
+    height: 0!important;
+}
+div > .vertical-timeline-element-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @media screen and (min-width: 600px) {
+
+
     .mainImage {
         background-position: center center;
         background-repeat: no-repeat;

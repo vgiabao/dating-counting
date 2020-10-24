@@ -4,7 +4,6 @@ import firebase from "./Components/Authentication/Firebase";
 import MainPage from './Components/MainPage'
 import Navbar from "./Components/Navbar/Narbar";
 import {navigate} from "@reach/router";
-import CardDeckContainer from "./Components/CoupleComponents/ImagePicking/cardDeckContainer";
 
 class App extends Component {
     constructor() {
@@ -22,9 +21,9 @@ class App extends Component {
             pulledKeyImages: [],
             lover_1_name: '',
             lover_2_name: '',
-            tarotImages: [],
             gender: '',
             status: [],
+            owlImages: [],
 
 
         };
@@ -32,7 +31,6 @@ class App extends Component {
         this.getPassWord = this.getPassWord.bind(this);
         this.getImagesData = this.getImagesData.bind(this);
         this.getMemoryData = this.getMemoryData.bind(this);
-        this.getTarotImages = this.getTarotImages.bind(this);
         this.handlerGender = this.handlerGender.bind(this);
         this.logoutHandler = this.logoutHandler.bind(this);
         this.getGender = this.getGender.bind(this);
@@ -48,17 +46,18 @@ class App extends Component {
         this.getImagesData('nhiImages');
         this.getDailyNotes();
         this.getMemoryData();
-        this.getTarotImages();
         this.getGender();
         this.getStatusData();
         this.fetchLoverName('lover_1_name');
         this.fetchLoverName('lover_2_name');
-        if (this.state.isLogged || localStorage.getItem('isLogged' ) === 'true') {
+        if (this.state.isLogged || localStorage.getItem('isLogged') === 'true') {
+            this.setState({gender: localStorage.getItem('gender')});
             navigate('/bee-home')
         }
     }
-    getGender(){
-    //    get gender if user currently login
+
+    getGender() {
+        //    get gender if user currently login
         this.setState({gender: localStorage.getItem('gender')});
     }
 
@@ -72,6 +71,7 @@ class App extends Component {
         var keys = Object.keys(object || {})
         let lastValueInSnapShot = keys[keys.length - 1]
     }
+
     fetchLoverName(loverType) {
         const path = firebase.database().ref('details/' + loverType);
         path.on('value', snapShot => {
@@ -80,12 +80,7 @@ class App extends Component {
             this.setState({[loverType]: snapShot.val()[lastNameKey][loverType]});
         })
     }
-    getTarotImages() {
-        const ref = firebase.database().ref('Images/tarotImages')
-        ref.on('value', snapShot => {
-            const imageData = Object.keys(snapShot.val()).map(key => this.setState({tarotImages: [...this.state.tarotImages, snapShot.val()[key]]}))
-        })
-    }
+
 
     isIncludes(givenArr, item) {
         let arr = [...givenArr]
@@ -104,16 +99,18 @@ class App extends Component {
                     }
                 })
                 let imageData = value[item].images;
+                let newOldImages = [];
                 if (imageData) Object.keys(imageData).forEach(key => {
                     if (!this.isIncludes(this.state.pulledKeyImages, key)) {
+                        newOldImages.unshift(imageData[key]);
                         this.setState({memoryImageArr: [...this.state.memoryImageArr, imageData[key]]});
+                        this.setState({owlImages: [...this.state.owlImages, imageData[key]]});
                         this.setState({pulledKeyImages: [...this.state.pulledKeyImages, key]})
                     }
                 })
             })
         })
     }
-
     getImagesData(type) {
         const imageRef = firebase.database().ref('Images/' + type)
         imageRef.on('value', snapshot => {
@@ -129,13 +126,12 @@ class App extends Component {
             let status = [];
             let statusData = snapshot.val();
             const keys = Object.keys(statusData || {});
-            for (let item of keys){
+            for (let item of keys) {
                 statusData[item].id = item;
                 status.unshift(statusData[item]);
                 // this.setState({status: [statusData[item], ...this.state.status]})
             }
             this.setState({status: status})
-
         })
     }
 
@@ -155,7 +151,6 @@ class App extends Component {
     }
 
 
-
     handleLogIn() {
         this.setState({
             isLogged: true
@@ -170,6 +165,7 @@ class App extends Component {
 
 
     handlePostNote(sender, receiver, content) {
+        console.log('post node')
         const ref = firebase.database().ref(`Notes/${this.handleFormatDate()}`);
         ref.push({sender: sender, receiver: receiver, content: content});
     }
@@ -178,14 +174,18 @@ class App extends Component {
         const ref = firebase.database().ref('Memories/' + date);
         ref.push({title: title, content: content, date: date});
     }
+
     handlePostStatus(gender, content, date, emotion) {
         const ref = firebase.database().ref('Status/');
         ref.push({emotion: emotion, content: content, date: date, owner: gender, like: 0, likeArray: []});
     }
 
     async handleStorageMemoryImages(fileList, date) {
-        let curentDate = new Date()
-        let dirName = curentDate.getHours() + ':' + curentDate.getMinutes() + ':' + curentDate.getSeconds() + '-' + curentDate.getUTCDate() + '-' + curentDate.getUTCMonth() + '-' + curentDate.getFullYear()
+        let curentDate = new Date();
+        let hour = curentDate.getHours() < 10 ? '0' + curentDate.getHours() : curentDate.getHours();
+        let minute = curentDate.getMinutes() < 10 ? '0' + curentDate.getMinutes() : curentDate.getMinutes();
+        let second = curentDate.getSeconds() < 10 ? '0' + curentDate.getSeconds() : curentDate.getSeconds();
+        let dirName = hour + ':' + minute + ':' + second + '-' + curentDate.getUTCDate() + '-' + curentDate.getUTCMonth() + '-' + curentDate.getFullYear()
         const urlArr = await fileList.map(async image => {
             const memoryRef = firebase.storage().ref('Memories/' + date + '/' + image.name);
             await memoryRef.put(image).then(res => {
@@ -213,7 +213,8 @@ class App extends Component {
         this.setState({gender: value});
         localStorage.setItem('gender', value);
     }
-    logoutHandler(){
+
+    logoutHandler() {
         console.log("ig logged out ");
         this.setState({isLogged: false});
         localStorage.removeItem('isLogged');
@@ -225,7 +226,8 @@ class App extends Component {
         return (
             <div>
                 {this.state.isLogged || localStorage.getItem('isLogged') ?
-                    <Navbar handleStorageImages={this.handleStorageImages} isLogged={this.state.isLogged} logoutHandler={this.logoutHandler}/> : null}
+                    <Navbar handleStorageImages={this.handleStorageImages} isLogged={this.state.isLogged}
+                            logoutHandler={this.logoutHandler}/> : null}
                 <MainPage wallpaperImage={this.state.wallpaperImages} password={this.state.password}
                           isLogged={this.state.isLogged}
                           handleLogin={this.handleLogIn} handlePostImage={this.handlePostImage}
@@ -234,9 +236,11 @@ class App extends Component {
                           handleFormatDate={this.handleFormatDate}
                           notes={this.state.notes} handlePostMemoryData={this.handlePostMemoryData}
                           handleStorageMemoryImages={this.handleStorageMemoryImages} memoryData={this.state.memoryData}
-                          memoryImageArr={this.state.memoryImageArr} tarotImages={this.state.tarotImages}
-                          handlerGender={this.handlerGender} gender={this.state.gender} handlePostStatus={this.handlePostStatus} statusData={this.state.status}
-                          lover_1_name={this.state.lover_1_name} lover_2_name={this.state.lover_2_name}/>
+                          memoryImageArr={this.state.memoryImageArr}
+                          handlerGender={this.handlerGender} gender={this.state.gender}
+                          handlePostStatus={this.handlePostStatus} statusData={this.state.status}
+                          lover_1_name={this.state.lover_1_name} lover_2_name={this.state.lover_2_name}
+                          owlImages={this.state.owlImages}/>
             </div>
         );
     }

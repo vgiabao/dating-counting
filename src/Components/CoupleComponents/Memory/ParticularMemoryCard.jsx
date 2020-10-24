@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {VerticalTimelineElement} from 'react-vertical-timeline-component'
 import {ClockCircleOutlined} from '@ant-design/icons'
-import Gallery from "react-photo-gallery";
+import Gallery from "./Gallery";
 import {Modal} from "antd";
 
 function randomInt(min, max) {
@@ -36,26 +36,18 @@ class ParticularMemoryCard extends Component {
         this.setState({visible: false})
     }
 
-    // getMeta(url) {
-    //     let img = new Image();
-    //     img.onload = function () {
-    //         console.log(this.width + ' ' + this.height);
-    //     };
-    //     img.src = url;
-    // }
-
     clone(imgUrl) {
         this.setState({visible: true, currentImgUrl: imgUrl})
     }
 
     render() {
+
         let imageArr = [];
         if (this.props.image) {
             let index = 0;
             const imageSource = this.props.image;
-            let count = 0
+            let count = 0;
             for (let image in imageSource) {
-                // this.getMeta(this.props.image[image]);
                 count++;
                 imageArr.push({
                     src: this.props.image[image],
@@ -67,27 +59,27 @@ class ParticularMemoryCard extends Component {
                 })
                 index += 1
             }
-            console.log(count)
         }
+        const width = window.innerWidth;
 
         return (
             <VerticalTimelineElement
                 className="vertical-timeline-element--work mb-4"
                 contentArrowStyle={{borderRight: '7px solid  #89A894'}}
                 date={'Hôm ' + this.props.date}
-                dateStyle={{fontSize: '2rem', borderRadius:'5px', padding:'30px'}}
+                dateStyle={{fontSize: '2rem', borderRadius: '5px', padding: '30px'}}
                 iconStyle={{background: 'gray', color: '#fff', marginTop: '10px'}}
                 icon={<ClockCircleOutlined style={{fontSize: '3rem'}}/>}
             >
-                <h3 className="vertical-timeline-element-title" style={{color:'white'}}>{this.props.title}</h3>
+                <h3 className="vertical-timeline-element-title" style={{color: 'white'}}>{this.props.title}</h3>
                 <hr/>
-                <p style={{color:'white'}}>
+                <p style={{color: 'white'}}>
                     {this.props.content}
                 </p>
-                <Gallery photos={imageArr}
-                         onClick={(e, obj, clone = this.clone) => clone(obj.photo.src)}/>
+                <Gallery photos={imageArr}/>
+
                 <Modal bodyStyle={{padding: '0'}}
-                       closeIcon={<i className="fa fa-times" style={{color: 'red', fontWeight: 'bold'}}
+                       closeIcon={<i class   Name="fa fa-times" style={{color: 'red', fontWeight: 'bold'}}
                                      aria-hidden="true"/>
                        } centered footer={null} visible={this.state.visible}
                        onCancel={this.closeModal}>

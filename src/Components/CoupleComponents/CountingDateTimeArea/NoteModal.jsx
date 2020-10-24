@@ -59,8 +59,8 @@ class NoteModal extends Component {
         return (
             <div>
                 <Button style={{fontSize: '0.75rem'}} icon={<i className="fa fa-pencil mr-1" aria-hidden="true"/>
-                } onClick={this.showModal} title={'Viết Cho ' + this.props.target}> Viết Cho {this.props.target} </Button>
-                <Modal  visible={this.state.visible}
+                } onClick={this.showModal} title={'Viết Cho  ' + this.props.target}> Viết Cho {this.props.target} </Button>
+                <Modal  title={'Viết Cho' + this.props.target} visible={this.state.visible}
                        onCancel={this.handleCancel} footer={[
                     <Button key="back" onClick={this.handleCancel}>
                         Thui ứ nhắc nữa!

@@ -22,8 +22,9 @@ class CountingDateTime extends Component {
         return Math.floor(gap / 60 / 60 / 24 / 1000)
     }
 
+
     componentDidMount() {
-        // vXq7bdXLOmfvS8ai0BDFbCQM7IRC6uFRuP0oNNFD
+        window.scrollTo(0 , -100)
         axios.get('https://dating-counting.firebaseio.com/password/' + '.json?auth=vXq7bdXLOmfvS8ai0BDFbCQM7IRC6uFRuP0oNNFD')
             .then((response) => {
                 console.log(response.data)

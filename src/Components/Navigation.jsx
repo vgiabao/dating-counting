@@ -7,6 +7,7 @@ import Memories from "./CoupleComponents/Memory/Memories";
 import NewFeed from './CoupleComponents/newFeed/newFeed'
 class Navigation extends Component {
     render() {
+
         return (
             <Router>
                 <LoadingPage path={'/'} password={this.props.password} isLogged={this.props.isLogged}
@@ -16,13 +17,14 @@ class Navigation extends Component {
                               handleStorageImages={this.props.handleStorageImages} nhiImage={this.props.nhiImage}
                               baoImage={this.props.baoImage} handlePostNote={this.props.handlePostNote}
                               notes={this.props.notes} handleFormatDate={this.props.handleFormatDate}
+                              owlImages={this.props.owlImages}
                 />
                 <BackgroundCarousel path={'/login'}/>
                 <Memories path={'/our-story'} handlePostMemoryData={this.props.handlePostMemoryData}
                           handleStorageMemoryImages={this.props.handleStorageMemoryImages}
                           memoryData={this.props.memoryData} memoryImageArr={this.props.memoryImageArr}/>
                 <NewFeed path={'/new-feed'} {...this.props} />
-
+                <NewFeed path={'/album'} {...this.props} />
             </Router>
         );
     }

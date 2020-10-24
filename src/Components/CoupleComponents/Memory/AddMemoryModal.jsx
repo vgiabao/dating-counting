@@ -3,18 +3,8 @@ import {PlusCircleOutlined} from "@ant-design/icons";
 import {VerticalTimelineElement} from "react-vertical-timeline-component";
 import {Button, Input, Modal, DatePicker, Upload} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
-import firebase from "../../Authentication/Firebase";
 import {navigate} from "@reach/router";
 import moment from 'moment'
-
-function getBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-}
 
 
 class AddMemoryModal extends Component {
@@ -30,7 +20,7 @@ class AddMemoryModal extends Component {
             previewVisible: false,
             previewImage: '',
             fileList: [],
-        }
+        };
         this.showModal = this.showModal.bind(this);
         this.handleOk = this.handleOk.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -60,10 +50,9 @@ class AddMemoryModal extends Component {
         this.props.handlePostMemoryData(title, content, date)
 
         setTimeout(() => {
-            this.setState({loading: false, visible: false, date: '', content: '', title: '', images: []});
+            this.setState({loading: false, visible: false, date: '', content: '', title: '', images: [], fileList: []});
             this.getDate();
             navigate('/our-story')
-            // window.location.reload();
         }, 2000);
     }
 
@@ -78,11 +67,9 @@ class AddMemoryModal extends Component {
 
     handleImagesChange(file) {
         let newImageArr = [];
-        // console.log('images state: ', this.state.images, 'fileList: ', file.fileList)
         for (let item of this.state.images) {
             if (this.isIncludesItem(file.fileList, item)) newImageArr.push(item)
         }
-
         this.setState({images: newImageArr, fileList: [... file.fileList]})
         console.log('fileList:', file)
         console.log('state:', this.state.images)
@@ -100,15 +87,7 @@ class AddMemoryModal extends Component {
         this.setState({date: dateString})
     }
 
-    handlePreview = async file => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj);
-        }
-        this.setState({
-            previewImage: file.url || file.preview,
-            previewVisible: true,
-        });
-    };
+
 
     getDate() {
         let currentDate = new Date
@@ -122,7 +101,7 @@ class AddMemoryModal extends Component {
 
     render() {
         const dateFormat = 'YYYY-MM-DD';
-        let currentDate = new Date
+        let currentDate = new Date;
         const currentMoment = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
         const {images, title, date, content} = this.state;
         const uploadButton = (
@@ -136,10 +115,10 @@ class AddMemoryModal extends Component {
                 <VerticalTimelineElement
                     className={'vertical-timeline-element--work'}
                     contentStyle={{background: 'rgb(33, 150, 243)', color: '#fff'}}
-                    iconStyle={{background: 'rgb(16, 204, 82)', color: '#fff'}}
+                    iconStyle={{background: 'rgb(16, 204, 82)', color: '#fff', alignSelf: 'center'}}
                     icon={<PlusCircleOutlined/>} iconOnClick={this.showModal}
                 >
-                    <p>Ấn Cái Nút Này Để Thêm Kỉ Niệm :3</p>
+                    <p>Ấn Cái Nút Này Để Thêm Kỉ Niệm 😼</p>
                 </VerticalTimelineElement>
                 <Modal visible={this.state.visible}
                        onCancel={this.handleCancel} footer={[
@@ -152,21 +131,21 @@ class AddMemoryModal extends Component {
                     </Button>,
                 ]}>
                     <div className={'container px-0 my-3 mx-1'}>
-                        <div className={'col-6 mb-2 px-0'}>
+                        <div className={'col-6 my-2 px-0 pt-2'}>
                             <DatePicker defaultValue={moment(currentMoment, dateFormat)} height={'middle'}
                                         onChange={this.handleDateTimeInput}/>
                         </div>
                         <div className={'col-12 px-0'}>
                             <Upload
-                                action={(file) => {
+                                action= { (file) => {
                                     this.setState({images: [...this.state.images, file]});
+                                    return true;
                                 }}
-
                                 onChange={this.handleImagesChange}
                                 listType="picture-card"
-                                onPreview={this.handlePreview}
                                 multiple={true}
                                 fileList={this.state.fileList}
+                                method='POST'
                             >
                                 {uploadButton}
                             </Upload>
@@ -180,7 +159,7 @@ class AddMemoryModal extends Component {
                         <div className={'col-12 px-0 mt-2'}>
                             <Input.TextArea style={{height: '20vh'}} onChange={this.handleContentInput}
                                             value={content} required={true}
-                                            placeholder={'Anh/Em Nghĩ gì? :v'}/>
+                                            placeholder={ 'Anh/Em Nghĩ gì? :v'}/>
                         </div>
                     </div>
                 </Modal>

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "dating-counting"
+  },
+  "targets": {
+    "dating-counting": {
+      "hosting": {
+        "app": [
+          "demo-dating"
+        ]
+      }
+    }
   }
 }
