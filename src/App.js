@@ -12,7 +12,7 @@ class App extends Component {
             password: null,
             isLogged: false,
             baoImages: '',
-            nhiImages: '',
+            huyenImages: '',
             wallpaperImages: '',
             notes: null,
             memoryData: [],
@@ -24,6 +24,7 @@ class App extends Component {
             gender: '',
             status: [],
             owlImages: [],
+            albums: [],
 
 
         };
@@ -43,7 +44,7 @@ class App extends Component {
         this.getPassWord();
         this.getImagesData('baoImages');
         this.getImagesData('wallpaperImages');
-        this.getImagesData('nhiImages');
+        this.getImagesData('huyenImages');
         this.getDailyNotes();
         this.getMemoryData();
         this.getGender();
@@ -54,6 +55,14 @@ class App extends Component {
             this.setState({gender: localStorage.getItem('gender')});
             navigate('/bee-home')
         }
+    }
+
+    handleRegister(){
+
+    }
+
+    fetchAlbums(){
+
     }
 
     getGender() {
@@ -115,8 +124,10 @@ class App extends Component {
         const imageRef = firebase.database().ref('Images/' + type)
         imageRef.on('value', snapshot => {
             let imageData = snapshot.val()
-            var keys = Object.keys(snapshot.val() || {})
+            console.log('img data',imageData)
+            const keys = Object.keys(snapshot.val() || {})
             let lastValueInSnapShot = keys[keys.length - 1]
+            console.log('type', type)
             this.setState({[type]: imageData[lastValueInSnapShot][type]})
         })
     }
@@ -170,28 +181,28 @@ class App extends Component {
         ref.push({sender: sender, receiver: receiver, content: content});
     }
 
-    handlePostMemoryData(title, content, date) {
-        const ref = firebase.database().ref('Memories/' + date);
-        ref.push({title: title, content: content, date: date});
+    handlePostMemoryData(title, content, date, currentTime) {
+        const ref = firebase.database().ref('Memories/' + date + '/').child(currentTime);
+        if (title && content && date) {
+            ref.set({title: title, content: content, date: date});
+        }}
+
+    handlePostStatus(gender, content, date, emotion, currentTime) {
+        const ref = firebase.database().ref('Status/'+ currentTime);
+        ref.setValue({emotion: emotion, content: content, date: date, owner: gender, like: 0, likeArray: []});
     }
 
-    handlePostStatus(gender, content, date, emotion) {
-        const ref = firebase.database().ref('Status/');
-        ref.push({emotion: emotion, content: content, date: date, owner: gender, like: 0, likeArray: []});
-    }
 
-    async handleStorageMemoryImages(fileList, date) {
-        let curentDate = new Date();
-        let hour = curentDate.getHours() < 10 ? '0' + curentDate.getHours() : curentDate.getHours();
-        let minute = curentDate.getMinutes() < 10 ? '0' + curentDate.getMinutes() : curentDate.getMinutes();
-        let second = curentDate.getSeconds() < 10 ? '0' + curentDate.getSeconds() : curentDate.getSeconds();
-        let dirName = hour + ':' + minute + ':' + second + '-' + curentDate.getUTCDate() + '-' + curentDate.getUTCMonth() + '-' + curentDate.getFullYear()
+
+    async handleStorageMemoryImages(fileList, date, currentTime) {
         const urlArr = await fileList.map(async image => {
+
             const memoryRef = firebase.storage().ref('Memories/' + date + '/' + image.name);
             await memoryRef.put(image).then(res => {
+                console.log( firebase.storage().ref('Memories/' + date + '/').child(image.name));
                 const imageUrl = firebase.storage().ref('Memories/' + date + '/').child(image.name).getDownloadURL().then(res => {
-                    const ref = firebase.database().ref('Memories/' + date + '/images/' + dirName);
-                    ref.push(res)
+                    const ref = firebase.database().ref('Memories/' + date+ '/' + currentTime).child('images').push();
+                    ref.set(res)
                 })
             })
         })
@@ -208,6 +219,9 @@ class App extends Component {
             })
         })
     }
+
+
+
 
     handlerGender(value) {
         this.setState({gender: value});
@@ -232,13 +246,13 @@ class App extends Component {
                           isLogged={this.state.isLogged}
                           handleLogin={this.handleLogIn} handlePostImage={this.handlePostImage}
                           baoImage={this.state.baoImages} handleStorageImages={this.handleStorageImages}
-                          nhiImage={this.state.nhiImages} handlePostNote={this.handlePostNote}
+                          huyenImage={this.state.huyenImages} handlePostNote={this.handlePostNote}
                           handleFormatDate={this.handleFormatDate}
                           notes={this.state.notes} handlePostMemoryData={this.handlePostMemoryData}
                           handleStorageMemoryImages={this.handleStorageMemoryImages} memoryData={this.state.memoryData}
                           memoryImageArr={this.state.memoryImageArr}
                           handlerGender={this.handlerGender} gender={this.state.gender}
-                          handlePostStatus={this.handlePostStatus} statusData={this.state.status}
+                          handlePostStatus={this .handlePostStatus} statusData={this.state.status}
                           lover_1_name={this.state.lover_1_name} lover_2_name={this.state.lover_2_name}
                           owlImages={this.state.owlImages}/>
             </div>

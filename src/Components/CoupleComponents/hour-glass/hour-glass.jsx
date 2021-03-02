@@ -22,6 +22,7 @@ class HourGlass extends Component {
             this.setState({
                 startingDay: snapShot.val()
             });
+            console.log('date from db', snapShot.val())
         });
 
     }
@@ -72,7 +73,6 @@ class HourGlass extends Component {
     }
 
     render() {
-        console.log(this.state.second);
         return (
             <div className='glasshour-container'>
                 <div className="top-glass3"/>

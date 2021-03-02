@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {VerticalTimelineElement} from 'react-vertical-timeline-component'
-import {ClockCircleOutlined} from '@ant-design/icons'
+import {ClockCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import Gallery from "./Gallery";
-import {Modal} from "antd";
+import {Modal, Carousel} from 'antd';
+import ReactPlayer from "react-player";
+import MemoryVideo from "./MemoryVideo";
 
-function randomInt(min, max) {
-    return min + Math.floor((max - min) * Math.random());
-}
-
-function columns(containerWidth) {
-    let columns = 1;
-    if (containerWidth >= 500) columns = 2;
-    if (containerWidth >= 900) columns = 3;
-    if (containerWidth >= 1500) columns = 4;
-    return columns;
-}
+// function randomInt(min, max) {
+//     return min + Math.floor((max - min) * Math.random());
+// }
+//
+// function columns(containerWidth) {
+//     let columns = 1;
+//     if (containerWidth >= 500) columns = 2;
+//     if (containerWidth >= 900) columns = 3;
+//     if (containerWidth >= 1500) columns = 4;
+//     return columns;
+// }
 
 class ParticularMemoryCard extends Component {
     constructor() {
@@ -41,26 +43,17 @@ class ParticularMemoryCard extends Component {
     }
 
     render() {
-
         let imageArr = [];
         if (this.props.image) {
-            let index = 0;
-            const imageSource = this.props.image;
-            let count = 0;
-            for (let image in imageSource) {
-                count++;
-                imageArr.push({
-                    src: this.props.image[image],
-                    width: randomInt(2, 3),
-                    height: randomInt(2, 5),
-                    sizes: ["(min-width: 480px) 8vw,(min-width: 1024px) 8vw,30vw"],
-                    key: index
-
-                })
-                index += 1
+            for (let image in this.props.image) {
+                if (!this.props.image[image].includes("mp4"))
+                imageArr.push(<img style={{height:'30vh!important', width:'100%'}} src={this.props.image[image]} alt={'memory image'}/>
+                )
+                else {
+                    imageArr.push(<MemoryVideo video={this.props.image[image]}  />)
+                }
             }
         }
-        const width = window.innerWidth;
 
         return (
             <VerticalTimelineElement
@@ -71,20 +64,22 @@ class ParticularMemoryCard extends Component {
                 iconStyle={{background: 'gray', color: '#fff', marginTop: '10px'}}
                 icon={<ClockCircleOutlined style={{fontSize: '3rem'}}/>}
             >
-                <h3 className="vertical-timeline-element-title" style={{color: 'white'}}>{this.props.title}</h3>
+                <h3 className="vertical-timeline-element-title" style={{color: 'white' , wordBreak: 'break-word'}}>{this.props.title}</h3>
                 <hr/>
                 <p style={{color: 'white'}}>
                     {this.props.content}
                 </p>
-                <Gallery photos={imageArr}/>
+                <Carousel >
+                    {imageArr}
+                </Carousel>
 
                 <Modal bodyStyle={{padding: '0'}}
-                       closeIcon={<i class   Name="fa fa-times" style={{color: 'red', fontWeight: 'bold'}}
+                       closeIcon={<i className="fa fa-times" style={{color: 'red', fontWeight: 'bold'}}
                                      aria-hidden="true"/>
                        } centered footer={null} visible={this.state.visible}
                        onCancel={this.closeModal}>
                     <div style={{maxHeight: '60vh', padding: '0'}}>
-                        <img style={{width: '100%'}} src={this.state.currentImgUrl} alt={'Large Image'}/>
+                        <img  src={this.state.currentImgUrl} alt={'Large Image'}/>
                     </div>
                 </Modal>
             </VerticalTimelineElement>

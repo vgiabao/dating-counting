@@ -20,7 +20,7 @@ class CenterNotifModal extends Component {
             </Button></div>}>
             <div >
                 <img src={'http://m.loptruong.com/uploads/images/mon%20qua.jpg'} alt={'notifImage'}/>
-                <h1> Bạn đã nhận được 1 món quà từ vợ</h1>
+                <h1> Bạn đã nhận được 1 món quà từ Em</h1>
             </div>
             </Modal>
         );

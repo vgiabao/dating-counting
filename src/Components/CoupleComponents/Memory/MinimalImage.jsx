@@ -27,7 +27,7 @@ class MinimalImage extends Component {
                     ]}
                 >
                     {this.props.type === 'video' ? <ReactPlayer src={this.props.url} className={''}/> :
-                        <img src={this.props.url} alt={'minimalImage'} />}
+                        <img style={{maxWidth:'50vw'}} src={this.props.url} alt={'minimalImage'} />}
                 </Modal>
              {this.props.type === 'video' ? <ReactPlayer src={this.props.url} width={200} height={200} /> :
                 <img src={this.props.url} alt={'minimalImage'} style={{height:200 + 'px', width: '100px'}}  onClick={this.zoomImage} />}

@@ -116,7 +116,7 @@ class CurrentPost extends Component {
 
                 <div className={'container px-0 d-flex flex-row no-wrap justify-content-center mt-3 mx-0'}>
                     <img className={'userPostImage'}
-                         src={this.props.gender === 'Chồng' ? this.props.baoImage : this.props.nhiImage}
+                         src={this.props.gender === 'Anh' ? this.props.baoImage : this.props.huyenImage}
                          alt={'userPostImage'}/>
                     <div className={'container flex-column d-flex pr-1 py-1 '}>
 

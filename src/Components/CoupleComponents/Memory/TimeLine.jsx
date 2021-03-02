@@ -17,19 +17,23 @@ class TimeLine extends Component {
         }
     }
 
+
     render() {
         let index = this.props.memoryData.length;
+        let DOMNodes = [];
         let  reveredArr = this.props.memoryData;
-        const memoryCards = reveredArr.map(item => (
-            <ParticularMemoryCard content={item.content} image={this.props.memoryImageArr[index -=1]} title={item.title}
-                                  date={item.date}/>
-    ))
+        console.log('arr', reveredArr)
+        for (let item of reveredArr){
+            DOMNodes.push(<ParticularMemoryCard content={item.content} image={item.images} title={item.title}
+                                                date={item.date}/>)
+        }
+
 
         return (
             <VerticalTimeline >
                 <AddMemoryModal handlePostMemoryData={this.props.handlePostMemoryData}
                                 handleStorageMemoryImages={this.props.handleStorageMemoryImages}/>
-                {memoryCards}
+                {DOMNodes}
 
             </VerticalTimeline>
         );

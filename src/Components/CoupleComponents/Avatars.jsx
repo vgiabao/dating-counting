@@ -16,7 +16,7 @@ function getBase64(file) {
 class Avatars extends Component {
     constructor(props) {
         super(props);
-        this.state = {loading: false, visible: false, baoImage: null, nhiImage: null}
+        this.state = {loading: false, visible: false, baoImage: null, huyenImage: null}
 
     }
 
@@ -41,7 +41,7 @@ class Avatars extends Component {
                             <UploadImageToFireBase type={'baoImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>
-                            <NoteModal sender={'Vợ'} target={'Chồng'} handlePostNote={this.props.handlePostNote}
+                            <NoteModal sender={'Em'} target={'Anh'} handlePostNote={this.props.handlePostNote}
                                        handleFormatDate={this.props.handleFormatDate}/>
                         </div>
                     </div>
@@ -49,12 +49,12 @@ class Avatars extends Component {
 
                     <div className={'avatar-container col-4 px-0 offset-4 '}>
                         <img className={'p-0 mainImage'}
-                             src={this.props.nhiImage} alt={'nhiImage'}/>
+                             src={this.props.huyenImage} alt={'huyenImage'}/>
                         <div className={'avatar-overlay mainImage '}>
-                            <UploadImageToFireBase type={'nhiImages'} avatarOption={true}
+                            <UploadImageToFireBase type={'huyenImages'} avatarOption={true}
                                                    handlePostImage={this.props.handlePostImage}
                                                    handleStorageImages={this.props.handleStorageImages}/>
-                            <NoteModal sender={'Chồng'} target={'Vợ'} handlePostNote={this.props.handlePostNote}
+                            <NoteModal sender={'Anh'} target={'Em'} handlePostNote={this.props.handlePostNote}
                                        handleFormatDate={this.props.handleFormatDate}/>
                         </div>
                     </div>

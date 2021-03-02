@@ -17,7 +17,7 @@ class CountingDateTime extends Component {
 
     calculateTotalDay() {
         let currentDate = new Date()
-        let startingDate = new Date('2020/03/05')
+        let startingDate = new Date('2020/11/09')
         let gap = Math.abs(currentDate - startingDate);
         return Math.floor(gap / 60 / 60 / 24 / 1000)
     }
@@ -40,8 +40,7 @@ class CountingDateTime extends Component {
             target={this.props.notes[item].receiver}/>)
         else noteBoxes = <DefaultNote/>
         return (
-            <Carousel autoplay={true} dots={true} effect={'fade'} style={{height:'50vh'}}>
-                <ParticularDateTime calculateTotalDay={this.calculateTotalDay}/>
+            <Carousel className={'mt-5'} autoplay={true} dots={true} effect={'fade'} style={{height:'50vh'}}>
                 {noteBoxes}
             </Carousel>
         )

@@ -8,7 +8,7 @@ export default class Notification extends Component {
         this.state = {
             noTifNumber: 0,
             newNoTif: [],
-            target: this.props.gender === 'Chồng' ? 'Vợ' : 'Chồng'
+            target: this.props.gender === 'Anh' ? 'Em' : 'Anh'
         }
         this.fetchNumNotif = this.fetchNumNotif.bind(this);
         this.fetchNotifDetail = this.fetchNotifDetail.bind(this);
@@ -41,7 +41,7 @@ export default class Notification extends Component {
 
     componentDidMount() {
         this.fetchNumNotif();
-        this.fetchNotifDetail();
+        // this.fetchNotifDetail();
         console.log(this.state.newNoTif)
     }
     async notifBarOnClick(e){

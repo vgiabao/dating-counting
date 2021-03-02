@@ -4,10 +4,6 @@ import {Spring} from "react-spring/renderprops-universal";
 class DefaultNote extends Component {
 
     render() {
-        // let date = new Date();
-        // let year = date.getFullYear();
-        // let month = date.getMonth() + 1;
-        // let day = date.getDate();
         return (
             <Spring config={{duration: 100}} from={{opacity: 0}} to={{opacity: 1}}>
                 {props => (
@@ -22,12 +18,11 @@ class DefaultNote extends Component {
                             width: '100%',
                             textShadow: '2px',
                             height: '100%',
-                            maxWidth: '100vh'
                         }}>
-                            <h5 align={'left'}> Dear the sweeties couple, </h5>
+                            <h5 align={'left'}>  </h5>
                             <h5 align={'left'} style={{wordWrap: 'break-word'}}>Hai đứa viết gì cho nhau đi :)  </h5>
                             <div className={'ml-auto col-7 text-center'}>
-                                <h5 className={''}> From Cupid With Love!</h5>
+                                <h5 className={''}> Nha Cua Tui Minh </h5>
                                 <i className="fa fa-heart"
                                    style={{color: 'red', fontSize: '2rem'}}
                                    aria-hidden="true"/>

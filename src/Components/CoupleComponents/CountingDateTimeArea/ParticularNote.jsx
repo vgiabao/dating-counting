@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Spring} from "react-spring/renderprops-universal";
+import parse from 'html-react-parser';
+
 class ParticularNote extends Component {
 
     render() {
@@ -7,6 +9,8 @@ class ParticularNote extends Component {
         // let year = date.getFullYear();
         // let month = date.getMonth() + 1;
         // let day = date.getDate();
+        let content;
+        if (this.props.content) content =parse('<p>' + this.props.content +'</p>')
         return (
             <Spring config={{duration: 100}} from={{opacity: 0}} to={{opacity: 1}}>
                 {props => (
@@ -23,7 +27,7 @@ class ParticularNote extends Component {
                         maxWidth: '100vh'
                     }}>
                         <h5 align={'left'}> Dear {this.props.target}, </h5>
-                        <h5 align={'left'} style={{wordWrap: 'break-word'}}> {this.props.content} </h5>
+                        <h5 align={'left'} style={{wordWrap: 'break-word'}}> {content} </h5>
                         <div className={'ml-auto col-7 text-center'}>
                         <h5 className={''}> From {this.props.sender} With Love!</h5>
                             <i className="fa fa-heart"

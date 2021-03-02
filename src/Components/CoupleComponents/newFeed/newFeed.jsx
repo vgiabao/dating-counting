@@ -28,7 +28,7 @@ class NewFeed extends Component {
             content={item.content}
             owner={item.owner}
             baoImage={this.props.baoImage}
-            nhiImage={this.props.nhiImage} date={item.date}
+            huyenImage={this.props.huyenImage} date={item.date}
             id={item.id} emotion={item.emotion}
             lover_1_name={this.props.lover_1_name}
             lover_2_name={this.props.lover_2_name}
@@ -45,7 +45,7 @@ class NewFeed extends Component {
                 <div className={'container-fluid newFeedPostSize'} style={{backgroundColor: 'gray'}}>
                     <hr style={{color: 'white'}}/>
                     <CurrentPost baoImage={this.props.baoImage}
-                                 nhiImage={this.props.nhiImage} handlePostStatus={this.props.handlePostStatus}
+                                 huyenImage={this.props.huyenImage} handlePostStatus={this.props.handlePostStatus}
                                  gender={this.props.gender}/>
                     {statusArray}
                 </div>

@@ -10,8 +10,8 @@ class PrePost extends Component {
         this.state = {
             like: 0,
             likeArray: [],
-            genderName: this.props.gender === "Chồng" ? this.props.lover_1_name : this.props.lover_2_name,
-            otherName: this.props.gender === "Chồng" ? this.props.lover_2_name : this.props.lover_1_name,
+            genderName: this.props.gender === "Anh" ? this.props.lover_1_name : this.props.lover_2_name,
+            otherName: this.props.gender === "Anh" ? this.props.lover_2_name : this.props.lover_1_name,
             comment: null
 
         };
@@ -71,8 +71,8 @@ class PrePost extends Component {
     componentWillReceiveProps(nextProps, nextContext) {
         if (this.props !== nextProps) {
             this.setState({
-                genderName: this.props.gender === "Chồng" ? this.props.lover_1_name : this.props.lover_2_name,
-                otherName: this.props.gender === "Chồng" ? this.props.lover_2_name : this.props.lover_1_name
+                genderName: this.props.gender === "Anh" ? this.props.lover_1_name : this.props.lover_2_name,
+                otherName: this.props.gender === "Anh" ? this.props.lover_2_name : this.props.lover_1_name
             })
         }
     }
@@ -134,11 +134,11 @@ class PrePost extends Component {
                  style={{border: '1px solid black', borderRadius: '2px'}}>
                 <div className={'d-flex flex-row'}>
                     <img className={'userPostImage'}
-                         src={this.props.owner === 'Chồng' ? this.props.baoImage : this.props.nhiImage}
+                         src={this.props.owner === 'Anh' ? this.props.baoImage : this.props.huyenImage}
                          alt={'userPostImage'}/>
                     <div className={'d-flex flex-column align-items-start col-10 px-0'}>
                         <div>
-                            <bold> {this.props.owner === 'Chồng' ? this.props.lover_1_name : this.props.lover_2_name}</bold>
+                            <bold> {this.props.owner === 'Anh' ? this.props.lover_1_name : this.props.lover_2_name}</bold>
                             <span className={'ml-1'} style={{color: '#616770'}}> {this.props.emotion}</span>
                         </div>
                         <p className={'mb-0'} style={{color: '#616770'}}> {this.props.date}</p>
@@ -168,7 +168,7 @@ class PrePost extends Component {
                 </div>
                 {/*<div className={'container row d-flex pr-1 py-1 '}>*/}
                 {/*    <img className={'userPostImage'}*/}
-                {/*         src={this.props.gender === 'Chồng' ? this.props.baoImage : this.props.nhiImage}*/}
+                {/*         src={this.props.gender === 'Anh' ? this.props.baoImage : this.props.huyenImage}*/}
                 {/*         alt={'userPostImage'}/>*/}
                 {/*    <Input.TextArea value={this.state.textInput} target={'_blank'} className={'col-10'}*/}
                 {/*                    placeholder={'Viết bình luận...'}*/}

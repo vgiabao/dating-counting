@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {navigate} from "@reach/router";
-import {Modal, Button, Input, Spin, Radio} from "antd";
+import {Modal, Button, Input, Spin, Radio, Tabs} from "antd";
+import {ImportOutlined} from "@ant-design/icons";
+import Register from "./Authentication/Register";
+
+const {TabPane} = Tabs;
 
 class LoadingPage extends Component {
     constructor() {
@@ -11,10 +15,11 @@ class LoadingPage extends Component {
             loading: false,
             userInput: '',
             preLoading: false,
-            gender: ''
+            gender: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleGenderChange = this.handleGenderChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     showModal = () => {
@@ -56,11 +61,17 @@ class LoadingPage extends Component {
 
     componentDidMount() {
         setTimeout(() => this.setState({preLoading: true}), 2000)
-        alert('Em Huyền Queen Bee ơi, webnày anh làm cho em ấy!')
     }
-    handleGenderChange(e){
+
+    handleGenderChange(e) {
         this.setState({gender: e.target.value});
     }
+
+    handleInputChange(e){
+
+    }
+
+
 
     render() {
         let {visible, loading} = this.state;
@@ -69,6 +80,7 @@ class LoadingPage extends Component {
 
         return (
             <div id={'heart-container'} className={'d-flex justify-content-center align-items-center flex-column'}>
+
                 {/*<div id="heart"/>*/}
                 <h4 style={{
                     fontFamily: 'Brush Script MT, Brush Script Std, cursive',
@@ -77,7 +89,6 @@ class LoadingPage extends Component {
                 }}> Counting Dating</h4>
                 <i className="fa fa-heart" id={'heart-2'} aria-hidden="true"/>
                 <div>
-
                     {this.state.preLoading ?
                         <Button style={{borderRadius: '10px'}} type="primary" onClick={this.showModal}>
                             Ấn Vào Đi Bee
@@ -92,21 +103,25 @@ class LoadingPage extends Component {
                                 Quên Òi!
                             </Button>,
                             <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
-                                Dạ :v
+                                Đăng Nhập :v
                             </Button>,
                         ]}
                     >
                         <div
                             className={'container pb-2 d-flex flex-row pl-0'}>
-                        <h6 > Tớ là: </h6>
-                            <Radio.Group onChange={this.handleGenderChange} value={this.state.gender} className={'col-6'}>
-                                <Radio value='Chồng'>King 🐝</Radio>
-                                <Radio value='Vợ'>Queen 🐷</Radio>
+                            <h6> Tớ là: </h6>
+                            <Radio.Group onChange={this.handleGenderChange} value={this.state.gender}
+                                         className={'col-6'}>
+                                <Radio value='Anh'>King 🐝</Radio>
+                                <Radio value='Em'>Queen 🐷</Radio>
 
                             </Radio.Group>
                         </div>
+                        <Input value={this.state.account} type={'text'} onChange={this.handleChange}
+                               placeholder={'Nhà riêng của tụi mình :v'}/>
                         <Input value={this.state.userInput} type={'password'} onChange={this.handleChange}
                                placeholder={'Mật khẩu chung của tụi mình :v'}/>
+                        <Register/>
                     </Modal>
                 </div>
             </div>

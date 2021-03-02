@@ -1,11 +1,26 @@
 import React, {Component} from 'react';
 import {PlusCircleOutlined} from "@ant-design/icons";
 import {VerticalTimelineElement} from "react-vertical-timeline-component";
-import {Button, Input, Modal, DatePicker, Upload} from "antd";
+import {Button, Input, Modal, DatePicker, Upload, message} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
 import {navigate} from "@reach/router";
 import moment from 'moment'
 
+function beforeUpload(file) {
+    const isLt2M = file.size / 1024 / 1024 < 25;
+    if (!isLt2M) {
+
+        message.error({
+            content: 'Ảnh hoặc video của hai bạn quá nặng :v các bạn sửa cho nhẹ nhẹ lại (bé hơn 25Mb) rồi up lên nhen!',
+            className: 'custom-class',
+            style: {
+                top: '300px!important',
+                wordBreak: 'break-word'
+            },
+        });
+    }
+    return  isLt2M;
+}
 
 class AddMemoryModal extends Component {
     constructor() {
@@ -36,6 +51,14 @@ class AddMemoryModal extends Component {
             visible: true,
         })
     }
+    getCurrentTime(){
+        const curentDate = new Date();
+        const hour = curentDate.getHours() < 10 ? '0' + curentDate.getHours() : curentDate.getHours();
+        const minute = curentDate.getMinutes() < 10 ? '0' + curentDate.getMinutes() : curentDate.getMinutes();
+        const second = curentDate.getSeconds() < 10 ? '0' + curentDate.getSeconds() : curentDate.getSeconds();
+        return hour + ':' + minute + ':' + second + '-' + curentDate.getUTCDate() + '-' + curentDate.getUTCMonth() + '-' + curentDate.getFullYear()
+
+    }
 
     handleCancel() {
         this.setState({
@@ -46,8 +69,8 @@ class AddMemoryModal extends Component {
     handleOk() {
         const {title, content, date, images} = this.state;
         this.setState({loading: true});
-        this.props.handleStorageMemoryImages(images, date)
-        this.props.handlePostMemoryData(title, content, date)
+        this.props.handleStorageMemoryImages(images, date, this.getCurrentTime())
+        this.props.handlePostMemoryData(title, content, date,this.getCurrentTime())
 
         setTimeout(() => {
             this.setState({loading: false, visible: false, date: '', content: '', title: '', images: [], fileList: []});
@@ -67,12 +90,13 @@ class AddMemoryModal extends Component {
 
     handleImagesChange(file) {
         let newImageArr = [];
-        for (let item of this.state.images) {
-            if (this.isIncludesItem(file.fileList, item)) newImageArr.push(item)
-        }
-        this.setState({images: newImageArr, fileList: [... file.fileList]})
-        console.log('fileList:', file)
-        console.log('state:', this.state.images)
+            for (let item of this.state.images) {
+                if (this.isIncludesItem(file.fileList, item) && item.size / 1024 / 1024 < 25) {
+                    newImageArr.push(item);
+                }
+            }
+        this.setState({images: newImageArr, fileList: [...file.fileList]})
+
     }
 
     handleTitleInput(e) {
@@ -107,7 +131,7 @@ class AddMemoryModal extends Component {
         const uploadButton = (
             <div>
                 <PlusOutlined/>
-                <div className="ant-upload-text">Upload</div>
+                <div className="ant-upload-text">Thêm Ảnh</div>
             </div>
         );
         return (
@@ -145,7 +169,8 @@ class AddMemoryModal extends Component {
                                 listType="picture-card"
                                 multiple={true}
                                 fileList={this.state.fileList}
-                                method='POST'
+                                beforeUpload={beforeUpload}
+
                             >
                                 {uploadButton}
                             </Upload>

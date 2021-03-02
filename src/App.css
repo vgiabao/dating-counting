@@ -9,7 +9,10 @@
     animation: moveLoadingBackground 13s ease infinite;
 }
 
-
+.ant-message-notice-content{
+    margin-top: 20vh;
+    z-index: 30000;
+}
 #heart-2{
     color: #db1fb3;
     animation: heartbeat 5s infinite;
@@ -371,7 +374,13 @@ div > .vertical-timeline-element-icon{
     justify-content: center;
 }
 @media screen and (min-width: 600px) {
-
+    .slick-slide{
+        max-height: 40vh !important;
+    }
+    .stick-slide > div > img{
+        width: 100%!important;
+        height: 30vh!important;
+    }
 
     .mainImage {
         background-position: center center;
